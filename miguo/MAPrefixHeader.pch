@@ -1,0 +1,32 @@
+//
+//  MAPrefixHeader.pch
+//  miguo
+//
+//  Created by MCL on 16/8/15.
+//  Copyright © 2016年 CHLMA. All rights reserved.
+//
+
+#ifndef MAPrefixHeader_pch
+#define MAPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "UIView+Extend.h"
+#import "AssistantTool.h"
+#import "MACommon.h"
+
+#import "AppDelegate.h"
+#import "NetworkManager.h"
+
+#import "Masonry.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Extend.h"
+#import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
+#import "UIView+Toast.h"
+
+
+#endif /* MAPrefixHeader_pch */
