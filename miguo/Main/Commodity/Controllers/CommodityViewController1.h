@@ -1,5 +1,5 @@
 //
-//  SpecialViewController.h
+//  CommodityViewController1.h
 //  miguo
 //
 //  Created by MCL on 16/8/16.
@@ -8,6 +8,6 @@
 
 #import "MyViewController.h"
 
-@interface SpecialViewController : MyViewController
+@interface CommodityViewController1 : MyViewController
 
 @end

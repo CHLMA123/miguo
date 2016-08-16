@@ -1,13 +1,13 @@
 //
-//  SpecialViewController.h
+//  MyCollectionResuableView.m
 //  miguo
 //
 //  Created by MCL on 16/8/16.
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "MyViewController.h"
+#import "MyCollectionResuableView.h"
 
-@interface SpecialViewController : MyViewController
+@implementation MyCollectionResuableView
 
 @end

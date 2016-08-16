@@ -8,7 +8,7 @@
 
 #import "BaseTabBarController.h"
 #import "BaseNavigationController.h"
-#import "CommodityViewController.h"
+#import "CommodityViewController1.h"
 #import "ClassifyViewController.h"
 #import "GoodstuffViewController.h"
 #import "SpecialViewController.h"
@@ -33,7 +33,7 @@
 
 - (void)addChildViewControllers{
     
-    [self addChildViewController:[[CommodityViewController alloc] init] TitleName:@"首页" tabBarTitleName:@"商品" tabBarImageName:@"index_btn"];
+    [self addChildViewController:[[CommodityViewController1 alloc] init] TitleName:@"首页" tabBarTitleName:@"商品" tabBarImageName:@"index_btn"];
     [self addChildViewController:[[ClassifyViewController alloc] init] TitleName:@"Classify" tabBarTitleName:@"分类" tabBarImageName:@"btn_class"];
     [self addChildViewController:[[GoodstuffViewController alloc] init] TitleName:@"最新上架" tabBarTitleName:@"好货" tabBarImageName:@"btn_nice"];
     [self addChildViewController:[[SpecialViewController alloc] init] TitleName:@"最新上架" tabBarTitleName:@"专题" tabBarImageName:@"search_btn"];
@@ -50,7 +50,7 @@
     
     vc.tabBarItem.title = @"";
     // 修改标题位置
-//    self.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+    //self.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
     
     NSString *imgStr = [NSString stringWithFormat:@"%@_normal_64x49_", tabBarImageName];
     NSString *imgHLStr = [NSString stringWithFormat:@"%@_active_64x49_", tabBarImageName];
@@ -59,19 +59,6 @@
     vc.tabBarItem.image = [img imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = [selimg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.imageInsets = UIEdgeInsetsMake(7, 0, -7, 0);
-//    // 设置选中和未选中字体颜色
-//    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
-//    
-//    //未选中字体颜色
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateNormal];
-//    
-//    //选中字体颜色
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
-    
-    //修改字体属性
-    //    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-    //                                      [UIFont fontWithName:@"Helvetica" size:17.0], NSFontAttributeName, nil]
-    //                            forState:UIControlStateNormal];
     
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];

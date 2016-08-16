@@ -2,7 +2,7 @@
 //  SpecialViewController.m
 //  miguo
 //
-//  Created by MCL on 16/8/15.
+//  Created by MCL on 16/8/16.
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
@@ -15,8 +15,12 @@
 @implementation SpecialViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.bHaveHeadTitleScrollView = YES;
+    self.titleArrar = @[@"最新上架",@"臭美妞",@"生活家",@"骚包男",@"吃不胖",@"魔法镜",@"爱运动",@"熊孩子",@"数码控"];
+    self.cellTypeIndex = cellTableViewTypeIndex;
+    
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {

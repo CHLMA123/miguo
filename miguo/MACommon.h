@@ -16,6 +16,8 @@
 
 #define GetImageByName(x)       [UIImage imageNamed:x]
 
+#define ScrollHight 31
+
 /**
  *  获取屏幕 宽度、高度
  */
@@ -23,6 +25,8 @@
 #define SCREEN_WIDTH    ([UIScreen mainScreen].bounds.size.width)
 
 #define SCREEN_HEIGHT   ([UIScreen mainScreen].bounds.size.height)
+
+
 
 // iPad & iPhone
 #define kISiPad         (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -81,5 +85,11 @@
 #define RGB_Clear   [UIColor clearColor]        //透明
 #define RGB_White   [UIColor whiteColor]        //白色
 #define RGB_Black   [UIColor blackColor]        //黑色
+
+#define RGB_Lightgreen      [[UIColor greenColor] colorWithAlphaComponent:0.25];
+#define RGB_LightPurple     [[UIColor purple] colorWithAlphaComponent:0.25];
+#define RGB_LightBlue       [[UIColor blueColor] colorWithAlphaComponent:0.35];
+#define RGB_LightRed        [[UIColor redColor] colorWithAlphaComponent:0.25];
+#define RGB_LightOrange     [[UIColor orangeColor] colorWithAlphaComponent:0.25];
 
 #endif /* MACommon_h */

@@ -1,23 +1,23 @@
 //
-//  CommodityViewController.m
+//  CommodityViewController1.m
 //  miguo
 //
-//  Created by MCL on 16/8/15.
+//  Created by MCL on 16/8/16.
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "CommodityViewController.h"
+#import "CommodityViewController1.h"
 
-@interface CommodityViewController ()
+@interface CommodityViewController1 ()
 
 @end
 
-@implementation CommodityViewController
+@implementation CommodityViewController1
 
 - (void)viewDidLoad {
+    self.cellTypeIndex = cellCollectionViewTypeIndex;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self setUpTitleView];
     
 }
@@ -69,12 +69,13 @@
 }
 
 - (void)showSearchView:(UIButton *)sender{
-
+    
 }
 
 - (void)showMessageView:(UIButton *)sender{
     
 }
+
 
 /*
 #pragma mark - Navigation
