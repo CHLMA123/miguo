@@ -10,6 +10,6 @@
 
 @interface MyTableViewCell : UITableViewCell
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView;
+//+ (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     self.cellTypeIndex = cellCollectionViewTypeIndex;
+    self.resuableViewClassName = @"CommodityHeadView";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setUpTitleView];

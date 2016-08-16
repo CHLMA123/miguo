@@ -22,14 +22,14 @@
 
 @implementation MyTableViewCell
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView{
-    static NSString *maincellID = @"MyTable";
-    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:maincellID];
-    if (!cell) {
-        cell = [[MyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:maincellID];
-    }
-    return cell;
-}
+//+ (instancetype)cellWithTableView:(UITableView *)tableView{
+//    static NSString *maincellID = @"MyTable";
+//    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:maincellID];
+//    if (!cell) {
+//        cell = [[MyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:maincellID];
+//    }
+//    return cell;
+//}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -72,7 +72,7 @@
     [super layoutSubviews];
     _cellImageV.frame = CGRectMake(0, 0, self.width, self.height);
     CGFloat BGViewWidth = self.width *0.5 - 20;
-    _maskBGView.frame = CGRectMake(self.width * 0.5 - 20 , self.height - 108, BGViewWidth, 88);
+    _maskBGView.frame = CGRectMake(self.width * 0.5 + 20 , self.height - 108, BGViewWidth, 88);
     _cellNameLbl.frame = CGRectMake(0, 0, BGViewWidth, 44);
     _cellDateLbl.frame = CGRectMake(0, CGRectGetMaxY(_cellNameLbl.frame)+ 5 , BGViewWidth, 39);
     

@@ -7,35 +7,34 @@
 //
 
 #import "MyViewController.h"
-#import "MyCollectionViewCell.h"
-#import "MyCollectionResuableView.h"//CommodityHeadView
+#import "MyCollectionView.h"
+#import "MyCollectionFlowLayout.h"
 #import "HeadTitleScrollView.h"
 #import "MyTableViewCell.h"
 
-static NSString *collectionID = @"MyCollectionItem";
-static NSString *tableViewID = @"MyTableViewcell";
-
-@interface MyViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+#define FlexHight SCREEN_HEIGHT - 95
+static NSString *tableViewID  = @"MyTableViewcell";
+@interface MyViewController ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) HeadTitleScrollView *headTitleScrollView;
 
 @property (nonatomic, assign) NSInteger currentIndex;
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) MyCollectionFlowLayout *otherFlowLayout;
 
-@property (nonatomic, strong) UICollectionViewFlowLayout *myFlowLayout;
+@property (nonatomic, strong) UIScrollView *contentScrollView;
+@property (nonatomic, strong) UITableView *leftTable;
+@property (nonatomic, strong) UITableView *midTable;
+@property (nonatomic, strong) UITableView *rightTable;
 
-@property (nonatomic, assign) NSInteger itemCount;
+@property (nonatomic, strong) MyCollectionView *leftCollection;
+@property (nonatomic, strong) MyCollectionView *midCollection;
+@property (nonatomic, strong) MyCollectionView *rightCollection;
 
-@property (nonatomic,strong) UIScrollView *contentScrollView;
-@property (nonatomic,strong) UITableView *leftTable;
-@property (nonatomic,strong) UITableView *midTable;
-@property (nonatomic,strong) UITableView *rightTable;
-
-@property (nonatomic,strong) NSArray *tabArr;
-@property (nonatomic,strong) NSArray *leftArr;
-@property (nonatomic,strong) NSArray *midArr;
-@property (nonatomic,strong) NSArray *rigthArr;
+@property (nonatomic, strong) NSArray *tabArr;
+@property (nonatomic, strong) NSArray *leftArr;
+@property (nonatomic, strong) NSArray *midArr;
+@property (nonatomic, strong) NSArray *rigthArr;
 
 @end
 
@@ -77,31 +76,36 @@ static NSString *tableViewID = @"MyTableViewcell";
 
 - (void)setUpViews{
     
-    if (_cellTypeIndex == cellTableViewTypeIndex) {
-        
-        [self creatScrollTableView];
-        
-    }else if (_cellTypeIndex == cellCollectionViewTypeIndex){
-        
-        [self setUpCollectionViews];
-        
+    _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _contentScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    if (_titleArrar.count > 1) {
+        _contentScrollView.frame = CGRectMake(0, 95, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _contentScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, SCREEN_HEIGHT);
     }
-}
-
-- (void)creatScrollTableView{
-    
-    _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 31, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _contentScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*3, SCREEN_HEIGHT);
     _contentScrollView.showsHorizontalScrollIndicator = NO;
     _contentScrollView.showsVerticalScrollIndicator = NO;
     _contentScrollView.bounces=NO;
     _contentScrollView.pagingEnabled = YES;
     _contentScrollView.delegate=self;
     _contentScrollView.contentOffset = CGPointMake(0, 0);
+    [self.view addSubview:_contentScrollView];
     
-    _leftTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-30)];
-    _midTable = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH,0 , SCREEN_WIDTH, SCREEN_HEIGHT-30)];
-    _rightTable = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*2,0 , SCREEN_WIDTH, SCREEN_HEIGHT-30)];
+    if (_cellTypeIndex == cellTableViewTypeIndex) {
+        
+        [self createScrollTableView];
+        
+    }else if (_cellTypeIndex == cellCollectionViewTypeIndex){
+        
+        [self createScrollCollectionView];
+        
+    }
+}
+
+- (void)createScrollTableView{
+    
+    _leftTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, FlexHight)];
+    _midTable = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH,0 , SCREEN_WIDTH, FlexHight)];
+    _rightTable = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*2,0 , SCREEN_WIDTH, FlexHight)];
     _leftTable.delegate=self;
     _leftTable.dataSource=self;
     _midTable.delegate=self;
@@ -116,69 +120,49 @@ static NSString *tableViewID = @"MyTableViewcell";
     [_contentScrollView addSubview:_leftTable];
     [_contentScrollView addSubview:_midTable];
     [_contentScrollView addSubview:_rightTable];
-    [self.view addSubview:_contentScrollView];
+    
 
 }
 
-- (void)setUpCollectionViews{
-
-    self.itemCount = 30;
-    CGFloat collectionW = (SCREEN_WIDTH - 5)/2;
-    CGFloat collectionH = 300;
-    _myFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _myFlowLayout.minimumLineSpacing = 5;
-    _myFlowLayout.minimumInteritemSpacing = 5;
-    _myFlowLayout.itemSize = CGSizeMake(collectionW, collectionH);
-    _myFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    _myFlowLayout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 312);
+- (void)createScrollCollectionView{
     
-    CGFloat y1 = _bHaveHeadTitleScrollView ? 95 : 0;
+    [self setUpLeftCollectionView];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, y1, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_myFlowLayout];
-    _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.showsHorizontalScrollIndicator = YES;
-    _collectionView.showsVerticalScrollIndicator = NO;
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    [_collectionView setBounces:NO];
-    [_collectionView registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:collectionID];
-    [_collectionView registerClass:[MyCollectionResuableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-    [self.view addSubview:_collectionView];
-    
-}
-
-#pragma mark - UICollectionViewDataSource
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    MyCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionID forIndexPath:indexPath];
-    return cell;
-    
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.itemCount;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *reusableView = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
+    if (_titleArrar.count > 1) {
         
-        MyCollectionResuableView *sectionHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-        reusableView = sectionHeader;
-        
+        _otherFlowLayout = [[MyCollectionFlowLayout alloc] init];
+
+        [self setUpMidCollectionView];
+        [self setUpRightCollectionView];
     }
-    reusableView.backgroundColor = RGB_LightRed;
-    return reusableView;
 }
 
-#pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    NSLog(@"点击的item---%zd",indexPath.item);
+- (void)setUpLeftCollectionView{
+
+    MyCollectionFlowLayout *leftFlowLayout = [[MyCollectionFlowLayout alloc] init];
+    leftFlowLayout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 312);
+    _leftCollection = [[MyCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, FlexHight) collectionViewLayout:leftFlowLayout withCount:30 withcellKind:_resuableViewClassName];
+    [_contentScrollView addSubview:_leftCollection];
+    _leftCollection.backgroundColor = [UIColor redColor];
+    
 }
+
+- (void)setUpMidCollectionView{
+    
+    _midCollection = [[MyCollectionView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout withCount:30 withcellKind:nil];
+    [_contentScrollView addSubview:_midCollection];
+    _midCollection.backgroundColor = [UIColor yellowColor];
+    
+}
+
+- (void)setUpRightCollectionView{
+
+    _rightCollection = [[MyCollectionView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout withCount:30 withcellKind:nil];
+    [_contentScrollView addSubview:_rightCollection];
+    _rightCollection.backgroundColor = [UIColor greenColor];
+    
+}
+
 
 - (void)changeTableViewAndLoadData{
     
@@ -262,6 +246,11 @@ static NSString *tableViewID = @"MyTableViewcell";
 
 
 #pragma mark - tableView
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 220;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
 }

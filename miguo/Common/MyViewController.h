@@ -21,4 +21,6 @@ typedef NS_ENUM(NSInteger, cellViewTypeIndex) {
 
 @property (nonatomic, assign) cellViewTypeIndex cellTypeIndex;
 
+@property (nonatomic, assign) NSString *resuableViewClassName;
+
 @end

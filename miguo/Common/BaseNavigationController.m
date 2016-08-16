@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSDictionary *attriDic = @{NSFontAttributeName:[UIFont systemFontOfSize:21],NSForegroundColorAttributeName:[UIColor blackColor]};
+    NSDictionary *attriDic = @{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]};
     [self.navigationBar setTitleTextAttributes:attriDic];
     self.navigationBar.barTintColor = [UIColor whiteColor];
 }
