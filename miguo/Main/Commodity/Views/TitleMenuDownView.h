@@ -1,5 +1,5 @@
 //
-//  MyTableViewCell.h
+//  TitleMenuView.h
 //  miguo
 //
 //  Created by MCL on 16/8/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyTableViewCell : UITableViewCell
-
-//+ (instancetype)cellWithTableView:(UITableView *)tableView;
+@interface TitleMenuDownView : UIView
 
 @end

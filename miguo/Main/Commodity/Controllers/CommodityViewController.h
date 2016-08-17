@@ -2,12 +2,12 @@
 //  CommodityViewController.h
 //  miguo
 //
-//  Created by MCL on 16/8/15.
+//  Created by MCL on 16/8/17.
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "MCollectionViewController.h"
 
-@interface CommodityViewController : BaseViewController
+@interface CommodityViewController : MCollectionViewController
 
 @end

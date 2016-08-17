@@ -1,5 +1,5 @@
 //
-//  TitleMenuView.h
+//  MyCollectionResuableView.h
 //  miguo
 //
 //  Created by MCL on 16/8/16.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TitleMenuView : UIView
+@interface BaseCollectionResuableView : UICollectionReusableView
+
 
 @end

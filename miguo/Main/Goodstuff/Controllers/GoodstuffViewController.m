@@ -2,7 +2,7 @@
 //  GoodstuffViewController.m
 //  miguo
 //
-//  Created by MACHUNLEI on 16/8/16.
+//  Created by MCL on 16/8/17.
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
@@ -15,10 +15,10 @@
 @implementation GoodstuffViewController
 
 - (void)viewDidLoad {
-    self.bHaveHeadTitleScrollView = YES;
+    
     self.titleArrar = @[@"最新上架",@"数码",@"女装",@"文娱",@"家居",@"母婴",@"鞋包",@"运动",@"美妆"];
-    self.cellTypeIndex = cellCollectionViewTypeIndex;
     self.resuableViewClassName = @"GoodstuffHeadView";
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }

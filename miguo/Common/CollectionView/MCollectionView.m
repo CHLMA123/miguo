@@ -6,17 +6,17 @@
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "MyCollectionView.h"
+#import "MCollectionView.h"
 #import "MyCollectionViewCell.h"
 #import "CommodityHeadView.h"
 #import "GoodstuffHeadView.h"
 
 static NSString *collectionID = @"MyCollectionItem";
-@interface MyCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface MCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
 
-@implementation MyCollectionView
+@implementation MCollectionView
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
 {

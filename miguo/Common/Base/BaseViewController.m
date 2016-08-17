@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@" -----BaseViewController------ %f : %f", SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 - (void)didReceiveMemoryWarning {

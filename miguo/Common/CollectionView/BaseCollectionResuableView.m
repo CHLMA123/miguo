@@ -6,8 +6,8 @@
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "MyCollectionResuableView.h"
+#import "BaseCollectionResuableView.h"
 
-@implementation MyCollectionResuableView
+@implementation BaseCollectionResuableView
 
 @end

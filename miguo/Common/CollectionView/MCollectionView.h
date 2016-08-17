@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyCollectionView : UICollectionView
+@interface MCollectionView : UICollectionView
 
 @property (nonatomic, assign) NSInteger itemCount;
 

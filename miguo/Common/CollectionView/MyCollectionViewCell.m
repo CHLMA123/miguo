@@ -26,8 +26,8 @@
 
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = RGB_LightBlue;
-//        [self commitInitView];
+        self.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.25];
+        [self commitInitView];
     }
     return self;
 }
@@ -55,18 +55,21 @@
     [self addSubview:_oldPriceLbl];
     
     
-    _goodsImageV.backgroundColor = RGB_LightRed;
-    _descriptionLbl.backgroundColor = RGB_LightBlue;
-    _nowPriceLbl.backgroundColor = RGB_Lightgreen;
-    _oldPriceLbl.backgroundColor = RGB_LightOrange;
+    _goodsImageV.backgroundColor    = RGB_LightBlue;
+    _descriptionLbl.backgroundColor = RGB_LightRed;
+    _nowPriceLbl.backgroundColor    = RGB_Lightgreen;
+    _oldPriceLbl.backgroundColor    = RGB_LightOrange;
 }
 
 - (void)layoutSubviews{
+    
     [super layoutSubviews];
     _goodsImageV.frame = CGRectMake(0, 0, self.width, self.width);
-    _descriptionLbl.frame = CGRectMake(0, CGRectGetMaxY(_goodsImageV.frame) + 10, self.width, 20);
-    _nowPriceLbl.frame = CGRectMake(self.width - 30/2, CGRectGetMaxY(_descriptionLbl.frame) + 10, 30, 20);
-    _oldPriceLbl.frame = CGRectMake(CGRectGetMaxX(_nowPriceLbl.frame) + 5, CGRectGetMaxY(_descriptionLbl.frame) + 10, 30, 20);
+    CGFloat smallH = (self.height - self.width - 30)/2;
+    
+    _descriptionLbl.frame = CGRectMake(0, CGRectGetMaxY(_goodsImageV.frame) + 10, self.width, smallH);
+    _nowPriceLbl.frame = CGRectMake((self.width - 50)/2, CGRectGetMaxY(_descriptionLbl.frame) + 10, 50, smallH);
+    _oldPriceLbl.frame = CGRectMake(CGRectGetMaxX(_nowPriceLbl.frame) + 5, CGRectGetMaxY(_descriptionLbl.frame) + 10, 50, smallH);
 }
 
 @end

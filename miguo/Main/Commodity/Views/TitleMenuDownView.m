@@ -6,7 +6,7 @@
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "TitleMenuView.h"
+#import "TitleMenuDownView.h"
 
 typedef NS_ENUM(NSInteger, UIButtonTypeIndex)
 {
@@ -22,11 +22,11 @@ typedef NS_ENUM(NSInteger, UIButtonTypeIndex)
     UIButtonTypeShuMaIndex
 };
 
-@interface TitleMenuView ()
+@interface TitleMenuDownView ()
 
 @end
 
-@implementation TitleMenuView
+@implementation TitleMenuDownView
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];

@@ -6,8 +6,8 @@
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "MyViewController.h"
+#import "MTableViewController.h"
 
-@interface SpecialViewController : MyViewController
+@interface SpecialViewController : MTableViewController
 
 @end

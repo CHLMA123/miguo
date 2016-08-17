@@ -8,7 +8,7 @@
 
 #import "BaseTabBarController.h"
 #import "BaseNavigationController.h"
-#import "CommodityViewController1.h"
+#import "CommodityViewController.h"
 #import "ClassifyViewController.h"
 #import "GoodstuffViewController.h"
 #import "SpecialViewController.h"
@@ -33,7 +33,7 @@
 
 - (void)addChildViewControllers{
     
-    [self addChildViewController:[[CommodityViewController1 alloc] init] TitleName:@"首页" tabBarTitleName:@"商品" tabBarImageName:@"index_btn"];
+    [self addChildViewController:[[CommodityViewController alloc] init] TitleName:@"首页" tabBarTitleName:@"商品" tabBarImageName:@"index_btn"];
     [self addChildViewController:[[ClassifyViewController alloc] init] TitleName:@"Classify" tabBarTitleName:@"分类" tabBarImageName:@"btn_class"];
     [self addChildViewController:[[GoodstuffViewController alloc] init] TitleName:@"最新上架" tabBarTitleName:@"好货" tabBarImageName:@"btn_nice"];
     [self addChildViewController:[[SpecialViewController alloc] init] TitleName:@"最新上架" tabBarTitleName:@"专题" tabBarImageName:@"search_btn"];

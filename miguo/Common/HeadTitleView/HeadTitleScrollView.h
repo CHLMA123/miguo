@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  页面头部的类新闻资讯ScrollView
+ *
+ *  @param titleArray 初始化标题数组
+ *
+ */
 @interface HeadTitleScrollView : UIScrollView<UIScrollViewDelegate>
-
-- (instancetype)initWithSmallScroll:(NSArray *)titleArray;
 
 @property (nonatomic) NSInteger index;
 
 @property (nonatomic, strong) void (^changeIndexValue)(NSInteger);
+
+- (instancetype)initWithSmallScroll:(NSArray *)titleArray;
+
+- (CGFloat)getStringWidthSize:(NSString *)text andFontOfSize:(CGFloat)sizeFont;
 
 @end

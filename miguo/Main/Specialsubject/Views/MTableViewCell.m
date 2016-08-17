@@ -6,9 +6,9 @@
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "MyTableViewCell.h"
+#import "MTableViewCell.h"
 
-@interface MyTableViewCell ()
+@interface MTableViewCell ()
 
 @property (nonatomic, strong) UIImageView *cellImageV;
 
@@ -20,16 +20,16 @@
 
 @end
 
-@implementation MyTableViewCell
+@implementation MTableViewCell
 
-//+ (instancetype)cellWithTableView:(UITableView *)tableView{
-//    static NSString *maincellID = @"MyTable";
-//    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:maincellID];
-//    if (!cell) {
-//        cell = [[MyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:maincellID];
-//    }
-//    return cell;
-//}
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *maincellID = @"MyTable";
+    MTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:maincellID];
+    if (!cell) {
+        cell = [[MTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:maincellID];
+    }
+    return cell;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -77,8 +77,6 @@
     _cellDateLbl.frame = CGRectMake(0, CGRectGetMaxY(_cellNameLbl.frame)+ 5 , BGViewWidth, 39);
     
 }
-
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];

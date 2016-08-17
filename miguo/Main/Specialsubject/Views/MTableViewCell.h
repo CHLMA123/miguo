@@ -1,5 +1,5 @@
 //
-//  MyCollectionResuableView.h
+//  MyTableViewCell.h
 //  miguo
 //
 //  Created by MCL on 16/8/16.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyCollectionResuableView : UICollectionReusableView
+@interface MTableViewCell : UITableViewCell
 
++ (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

@@ -2,7 +2,7 @@
 //  CommodityViewController.m
 //  miguo
 //
-//  Created by MCL on 16/8/15.
+//  Created by MCL on 16/8/17.
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
@@ -15,11 +15,12 @@
 @implementation CommodityViewController
 
 - (void)viewDidLoad {
+    
+    self.resuableViewClassName = @"CommodityHeadView";
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self setUpTitleView];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,7 +70,7 @@
 }
 
 - (void)showSearchView:(UIButton *)sender{
-
+    
 }
 
 - (void)showMessageView:(UIButton *)sender{
