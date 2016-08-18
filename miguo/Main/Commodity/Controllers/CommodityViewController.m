@@ -7,6 +7,7 @@
 //
 
 #import "CommodityViewController.h"
+#import "CommodityHeadView.h"
 
 @interface CommodityViewController ()
 
@@ -19,8 +20,11 @@
     self.resuableViewClassName = @"CommodityHeadView";
     
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     [self setUpTitleView];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

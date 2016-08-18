@@ -9,13 +9,10 @@
 #import "MCollectionViewController.h"
 #import "MCollectionView.h"
 #import "MCollectionFlowLayout.h"
-#import "HeadTitleScrollView.h"
 
 #define FlexHight SCREEN_HEIGHT - 95
 
 @interface MCollectionViewController ()<UIScrollViewDelegate>
-
-@property (nonatomic, strong) HeadTitleScrollView *headTitleScrollView;
 
 @property (nonatomic, assign) NSInteger currentIndex;
 

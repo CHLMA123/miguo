@@ -76,6 +76,7 @@ static NSString *collectionID = @"MyCollectionItem";
         if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
             
            CommodityHeadView *sectionHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView" forIndexPath:indexPath];
+            [sectionHeader fillHeaderSectionViewwithImageArray:@[@"1",@"2",@"1",@"2",@"1"]];
             reusableView = sectionHeader;
             
         }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
