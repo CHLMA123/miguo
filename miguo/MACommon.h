@@ -16,6 +16,8 @@
 
 #define GetImageByName(x)       [UIImage imageNamed:x]
 
+#define MIGUOBackgroundColor    RGBCOLOR(229, 229, 229)
+
 #define ScrollHight 31
 
 /**
