@@ -393,6 +393,7 @@
 		361852141D62117C00ECAA52 /* btn_class_normal_64x49_@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 361852121D62117C00ECAA52 /* btn_class_normal_64x49_@3x.png */; };
 		3630059B1D61C73400ED3E21 /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363005981D61C73400ED3E21 /* ClassifyViewController.m */; };
 		363005A71D61C81100ED3E21 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363005A61D61C81100ED3E21 /* MineViewController.m */; };
+		364912931D6733C5002A3250 /* AboutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364912921D6733C5002A3250 /* AboutTableViewCell.m */; };
 		36712F711D65F18E00A520AA /* CommodityHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F6B1D65F18E00A520AA /* CommodityHeadView.m */; };
 		36712F731D65F18E00A520AA /* TitleMenuDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F6F1D65F18E00A520AA /* TitleMenuDownView.m */; };
 		36712F791D65F1CF00A520AA /* GoodstuffHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F771D65F1CF00A520AA /* GoodstuffHeadView.m */; };
@@ -892,6 +893,8 @@
 		363005981D61C73400ED3E21 /* ClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyViewController.m; sourceTree = "<group>"; };
 		363005A51D61C81100ED3E21 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		363005A61D61C81100ED3E21 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		364912911D6733C5002A3250 /* AboutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewCell.h; sourceTree = "<group>"; };
+		364912921D6733C5002A3250 /* AboutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewCell.m; sourceTree = "<group>"; };
 		36712F6A1D65F18E00A520AA /* CommodityHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityHeadView.h; sourceTree = "<group>"; };
 		36712F6B1D65F18E00A520AA /* CommodityHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityHeadView.m; sourceTree = "<group>"; };
 		36712F6E1D65F18E00A520AA /* TitleMenuDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleMenuDownView.h; sourceTree = "<group>"; };
@@ -1826,8 +1829,9 @@
 			isa = PBXGroup;
 			children = (
 				3630056D1D61BE1900ED3E21 /* Controllers */,
-				3630056E1D61BE1900ED3E21 /* Models */,
-				3630056F1D61BE1900ED3E21 /* Views */,
+				3649128E1D673393002A3250 /* Model */,
+				3649128F1D673393002A3250 /* View */,
+				364912901D673393002A3250 /* ViewModel */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -1839,20 +1843,6 @@
 				363005A61D61C81100ED3E21 /* MineViewController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		3630056E1D61BE1900ED3E21 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		3630056F1D61BE1900ED3E21 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		363005701D61BE1900ED3E21 /* Specialsubject */ = {
@@ -1935,6 +1925,29 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		3649128E1D673393002A3250 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3649128F1D673393002A3250 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				364912911D6733C5002A3250 /* AboutTableViewCell.h */,
+				364912921D6733C5002A3250 /* AboutTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		364912901D673393002A3250 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		36712F681D65F18E00A520AA /* Model */ = {
@@ -2453,6 +2466,7 @@
 				36070F011D61ABB2003B1A79 /* MJRefreshBackStateFooter.m in Sources */,
 				36C75A481D63158500A6D440 /* SpecialViewController.m in Sources */,
 				36070F191D61ABB2003B1A79 /* UIView+WebCacheOperation.m in Sources */,
+				364912931D6733C5002A3250 /* AboutTableViewCell.m in Sources */,
 				36070EDF1D61ABB2003B1A79 /* AFImageDownloader.m in Sources */,
 				36070EFE1D61ABB2003B1A79 /* MJRefreshAutoStateFooter.m in Sources */,
 				36070EE61D61ABB2003B1A79 /* UIWebView+AFNetworking.m in Sources */,
