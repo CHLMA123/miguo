@@ -30,7 +30,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        _mScrollViewH = 220;
+        _mScrollViewH = 160;
         _mPageControlW = 150;
         _mScrollSubjecData = @[@"1", @"2", @"3", @"4", @"5"];
         [self commitInitViews];
@@ -51,11 +51,11 @@
     [_mScrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:NO];
     
     _mPageControl = [[UIPageControl alloc] init];
-    _mPageControl.frame = CGRectMake(0, _mScrollViewH - 45, _mPageControlW, 15);
+    _mPageControl.frame = CGRectMake(SCREEN_WIDTH - _mPageControlW - 15, _mScrollViewH - 30, _mPageControlW, 15);
     _mPageControl.pageIndicatorTintColor = [UIColor whiteColor];
     _mPageControl.currentPageIndicatorTintColor = [UIColor redColor];
     _mPageControl.userInteractionEnabled = NO;
-    _mPageControl.center = CGPointMake(_mScrollView.center.x, _mScrollViewH - 45);
+//    _mPageControl.center = CGPointMake(_mScrollView.center.x, _mScrollViewH - 30);
     
     [self addSubview:_mScrollView];
     [self addSubview:_mPageControl];

@@ -391,10 +391,15 @@
 		361852101D620C5100ECAA52 /* zipai11.png in Resources */ = {isa = PBXBuildFile; fileRef = 361850E21D620C5100ECAA52 /* zipai11.png */; };
 		361852131D62117C00ECAA52 /* btn_class_normal_64x49_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 361852111D62117C00ECAA52 /* btn_class_normal_64x49_@2x.png */; };
 		361852141D62117C00ECAA52 /* btn_class_normal_64x49_@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 361852121D62117C00ECAA52 /* btn_class_normal_64x49_@3x.png */; };
-		362BF3AF1D632CDD002099D1 /* CommodityHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362BF3AE1D632CDD002099D1 /* CommodityHeadView.m */; };
-		362BF3B21D632D08002099D1 /* GoodstuffHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362BF3B11D632D08002099D1 /* GoodstuffHeadView.m */; };
 		3630059B1D61C73400ED3E21 /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363005981D61C73400ED3E21 /* ClassifyViewController.m */; };
 		363005A71D61C81100ED3E21 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363005A61D61C81100ED3E21 /* MineViewController.m */; };
+		36712F711D65F18E00A520AA /* CommodityHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F6B1D65F18E00A520AA /* CommodityHeadView.m */; };
+		36712F731D65F18E00A520AA /* TitleMenuDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F6F1D65F18E00A520AA /* TitleMenuDownView.m */; };
+		36712F791D65F1CF00A520AA /* GoodstuffHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F771D65F1CF00A520AA /* GoodstuffHeadView.m */; };
+		36712F7C1D65FB7700A520AA /* CommodityCarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F7B1D65FB7700A520AA /* CommodityCarouselModel.m */; };
+		36712F7F1D65FB9E00A520AA /* CommodityCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F7E1D65FB9E00A520AA /* CommodityCollectionModel.m */; };
+		36712F821D65FC2A00A520AA /* CommodityCarouselViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F811D65FC2A00A520AA /* CommodityCarouselViewModel.m */; };
+		36712F851D65FC3F00A520AA /* CommodityCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F841D65FC3F00A520AA /* CommodityCollectionViewModel.m */; };
 		36BC47551D64342800ECE508 /* MTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47541D64342800ECE508 /* MTableViewCell.m */; };
 		36BC47591D64359300ECE508 /* MCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47581D64359300ECE508 /* MCollectionViewController.m */; };
 		36BC475C1D6439A600ECE508 /* CommodityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC475B1D6439A600ECE508 /* CommodityViewController.m */; };
@@ -407,7 +412,6 @@
 		36BC477B1D645D9F00ECE508 /* MCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47701D645D9F00ECE508 /* MCollectionView.m */; };
 		36BC477C1D645D9F00ECE508 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47721D645D9F00ECE508 /* MyCollectionViewCell.m */; };
 		36BC477D1D645D9F00ECE508 /* HeadTitleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47751D645D9F00ECE508 /* HeadTitleScrollView.m */; };
-		36C75A211D62B0F900A6D440 /* TitleMenuDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C75A201D62B0F900A6D440 /* TitleMenuDownView.m */; };
 		36C75A2B1D62ED7800A6D440 /* MTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C75A2A1D62ED7800A6D440 /* MTableViewController.m */; };
 		36C75A481D63158500A6D440 /* SpecialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C75A471D63158500A6D440 /* SpecialViewController.m */; };
 /* End PBXBuildFile section */
@@ -884,14 +888,24 @@
 		361850E21D620C5100ECAA52 /* zipai11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zipai11.png; sourceTree = "<group>"; };
 		361852111D62117C00ECAA52 /* btn_class_normal_64x49_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_class_normal_64x49_@2x.png"; sourceTree = "<group>"; };
 		361852121D62117C00ECAA52 /* btn_class_normal_64x49_@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_class_normal_64x49_@3x.png"; sourceTree = "<group>"; };
-		362BF3AD1D632CDD002099D1 /* CommodityHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityHeadView.h; sourceTree = "<group>"; };
-		362BF3AE1D632CDD002099D1 /* CommodityHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityHeadView.m; sourceTree = "<group>"; };
-		362BF3B01D632D08002099D1 /* GoodstuffHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodstuffHeadView.h; path = miguo/Main/Commodity/Views/GoodstuffHeadView.h; sourceTree = SOURCE_ROOT; };
-		362BF3B11D632D08002099D1 /* GoodstuffHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodstuffHeadView.m; path = miguo/Main/Commodity/Views/GoodstuffHeadView.m; sourceTree = SOURCE_ROOT; };
 		363005971D61C73400ED3E21 /* ClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyViewController.h; sourceTree = "<group>"; };
 		363005981D61C73400ED3E21 /* ClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyViewController.m; sourceTree = "<group>"; };
 		363005A51D61C81100ED3E21 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		363005A61D61C81100ED3E21 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		36712F6A1D65F18E00A520AA /* CommodityHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityHeadView.h; sourceTree = "<group>"; };
+		36712F6B1D65F18E00A520AA /* CommodityHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityHeadView.m; sourceTree = "<group>"; };
+		36712F6E1D65F18E00A520AA /* TitleMenuDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleMenuDownView.h; sourceTree = "<group>"; };
+		36712F6F1D65F18E00A520AA /* TitleMenuDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleMenuDownView.m; sourceTree = "<group>"; };
+		36712F761D65F1CF00A520AA /* GoodstuffHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodstuffHeadView.h; sourceTree = "<group>"; };
+		36712F771D65F1CF00A520AA /* GoodstuffHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodstuffHeadView.m; sourceTree = "<group>"; };
+		36712F7A1D65FB7700A520AA /* CommodityCarouselModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityCarouselModel.h; sourceTree = "<group>"; };
+		36712F7B1D65FB7700A520AA /* CommodityCarouselModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityCarouselModel.m; sourceTree = "<group>"; };
+		36712F7D1D65FB9E00A520AA /* CommodityCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityCollectionModel.h; sourceTree = "<group>"; };
+		36712F7E1D65FB9E00A520AA /* CommodityCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityCollectionModel.m; sourceTree = "<group>"; };
+		36712F801D65FC2A00A520AA /* CommodityCarouselViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityCarouselViewModel.h; sourceTree = "<group>"; };
+		36712F811D65FC2A00A520AA /* CommodityCarouselViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityCarouselViewModel.m; sourceTree = "<group>"; };
+		36712F831D65FC3F00A520AA /* CommodityCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityCollectionViewModel.h; sourceTree = "<group>"; };
+		36712F841D65FC3F00A520AA /* CommodityCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityCollectionViewModel.m; sourceTree = "<group>"; };
 		36BC47531D64342800ECE508 /* MTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTableViewCell.h; sourceTree = "<group>"; };
 		36BC47541D64342800ECE508 /* MTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTableViewCell.m; sourceTree = "<group>"; };
 		36BC47571D64359300ECE508 /* MCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCollectionViewController.h; sourceTree = "<group>"; };
@@ -916,8 +930,6 @@
 		36BC47721D645D9F00ECE508 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		36BC47741D645D9F00ECE508 /* HeadTitleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTitleScrollView.h; sourceTree = "<group>"; };
 		36BC47751D645D9F00ECE508 /* HeadTitleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTitleScrollView.m; sourceTree = "<group>"; };
-		36C75A1F1D62B0F900A6D440 /* TitleMenuDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleMenuDownView.h; sourceTree = "<group>"; };
-		36C75A201D62B0F900A6D440 /* TitleMenuDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleMenuDownView.m; sourceTree = "<group>"; };
 		36C75A291D62ED7800A6D440 /* MTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTableViewController.h; sourceTree = "<group>"; };
 		36C75A2A1D62ED7800A6D440 /* MTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTableViewController.m; sourceTree = "<group>"; };
 		36C75A461D63158500A6D440 /* SpecialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialViewController.h; sourceTree = "<group>"; };
@@ -1774,8 +1786,9 @@
 			isa = PBXGroup;
 			children = (
 				363005651D61BE1900ED3E21 /* Controllers */,
-				363005661D61BE1900ED3E21 /* Models */,
-				363005671D61BE1900ED3E21 /* Views */,
+				36712F701D65F18E00A520AA /* ViewModel */,
+				36712F681D65F18E00A520AA /* Model */,
+				36712F691D65F18E00A520AA /* View */,
 			);
 			path = Commodity;
 			sourceTree = "<group>";
@@ -1789,30 +1802,13 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		363005661D61BE1900ED3E21 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		363005671D61BE1900ED3E21 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				36C75A1F1D62B0F900A6D440 /* TitleMenuDownView.h */,
-				36C75A201D62B0F900A6D440 /* TitleMenuDownView.m */,
-				362BF3AD1D632CDD002099D1 /* CommodityHeadView.h */,
-				362BF3AE1D632CDD002099D1 /* CommodityHeadView.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		363005681D61BE1900ED3E21 /* Goodstuff */ = {
 			isa = PBXGroup;
 			children = (
 				363005691D61BE1900ED3E21 /* Controllers */,
-				3630056A1D61BE1900ED3E21 /* Models */,
-				3630056B1D61BE1900ED3E21 /* Views */,
+				36712F741D65F1CF00A520AA /* Model */,
+				36712F751D65F1CF00A520AA /* View */,
+				36712F781D65F1CF00A520AA /* ViewModel */,
 			);
 			path = Goodstuff;
 			sourceTree = "<group>";
@@ -1824,22 +1820,6 @@
 				36BC47611D643AA200ECE508 /* GoodstuffViewController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		3630056A1D61BE1900ED3E21 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		3630056B1D61BE1900ED3E21 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				362BF3B01D632D08002099D1 /* GoodstuffHeadView.h */,
-				362BF3B11D632D08002099D1 /* GoodstuffHeadView.m */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		3630056C1D61BE1900ED3E21 /* Mine */ = {
@@ -1955,6 +1935,62 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		36712F681D65F18E00A520AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36712F7A1D65FB7700A520AA /* CommodityCarouselModel.h */,
+				36712F7B1D65FB7700A520AA /* CommodityCarouselModel.m */,
+				36712F7D1D65FB9E00A520AA /* CommodityCollectionModel.h */,
+				36712F7E1D65FB9E00A520AA /* CommodityCollectionModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36712F691D65F18E00A520AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36712F6A1D65F18E00A520AA /* CommodityHeadView.h */,
+				36712F6B1D65F18E00A520AA /* CommodityHeadView.m */,
+				36712F6E1D65F18E00A520AA /* TitleMenuDownView.h */,
+				36712F6F1D65F18E00A520AA /* TitleMenuDownView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36712F701D65F18E00A520AA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36712F801D65FC2A00A520AA /* CommodityCarouselViewModel.h */,
+				36712F811D65FC2A00A520AA /* CommodityCarouselViewModel.m */,
+				36712F831D65FC3F00A520AA /* CommodityCollectionViewModel.h */,
+				36712F841D65FC3F00A520AA /* CommodityCollectionViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		36712F741D65F1CF00A520AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36712F751D65F1CF00A520AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36712F761D65F1CF00A520AA /* GoodstuffHeadView.h */,
+				36712F771D65F1CF00A520AA /* GoodstuffHeadView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36712F781D65F1CF00A520AA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		36BC47631D645D9F00ECE508 /* Base */ = {
@@ -2377,9 +2413,11 @@
 				36070EFF1D61ABB2003B1A79 /* MJRefreshBackGifFooter.m in Sources */,
 				36070F1C1D61ABB2003B1A79 /* UIView+Toast.m in Sources */,
 				36070EF81D61ABB2003B1A79 /* MJRefreshBackFooter.m in Sources */,
+				36712F731D65F18E00A520AA /* TitleMenuDownView.m in Sources */,
 				36070EFA1D61ABB2003B1A79 /* MJRefreshFooter.m in Sources */,
 				36BC477B1D645D9F00ECE508 /* MCollectionView.m in Sources */,
 				36070EF71D61ABB2003B1A79 /* MJRefreshAutoFooter.m in Sources */,
+				36712F791D65F1CF00A520AA /* GoodstuffHeadView.m in Sources */,
 				36070EDA1D61ABB2003B1A79 /* AFSecurityPolicy.m in Sources */,
 				36070F0E1D61ABB2003B1A79 /* SDWebImageDecoder.m in Sources */,
 				360709A31D6197DA003B1A79 /* ViewController.m in Sources */,
@@ -2389,13 +2427,13 @@
 				36070EF31D61ABB2003B1A79 /* View+MASAdditions.m in Sources */,
 				36070F0B1D61ABB2003B1A79 /* NSData+ImageContentType.m in Sources */,
 				36070F141D61ABB2003B1A79 /* UIImage+GIF.m in Sources */,
-				362BF3AF1D632CDD002099D1 /* CommodityHeadView.m in Sources */,
 				360709A01D6197DA003B1A79 /* AppDelegate.m in Sources */,
 				36070EF61D61ABB2003B1A79 /* MBProgressHUD.m in Sources */,
 				36070F171D61ABB2003B1A79 /* UIImageView+HighlightedWebCache.m in Sources */,
 				36070F021D61ABB2003B1A79 /* MJRefreshGifHeader.m in Sources */,
 				36070EE01D61ABB2003B1A79 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				36070EF11D61ABB2003B1A79 /* NSArray+MASAdditions.m in Sources */,
+				36712F711D65F18E00A520AA /* CommodityHeadView.m in Sources */,
 				36070F091D61ABB2003B1A79 /* UIView+MJExtension.m in Sources */,
 				3607099D1D6197DA003B1A79 /* main.m in Sources */,
 				36070EF41D61ABB2003B1A79 /* ViewController+MASAdditions.m in Sources */,
@@ -2403,8 +2441,8 @@
 				36C75A2B1D62ED7800A6D440 /* MTableViewController.m in Sources */,
 				36070F031D61ABB2003B1A79 /* MJRefreshNormalHeader.m in Sources */,
 				36070EE21D61ABB2003B1A79 /* UIButton+AFNetworking.m in Sources */,
+				36712F7F1D65FB9E00A520AA /* CommodityCollectionModel.m in Sources */,
 				3630059B1D61C73400ED3E21 /* ClassifyViewController.m in Sources */,
-				36C75A211D62B0F900A6D440 /* TitleMenuDownView.m in Sources */,
 				36070F0F1D61ABB2003B1A79 /* SDWebImageDownloader.m in Sources */,
 				36070F061D61ABB2003B1A79 /* MJRefreshConst.m in Sources */,
 				36BC47781D645D9F00ECE508 /* BaseViewController.m in Sources */,
@@ -2420,6 +2458,8 @@
 				36070EE61D61ABB2003B1A79 /* UIWebView+AFNetworking.m in Sources */,
 				36070EDB1D61ABB2003B1A79 /* AFURLRequestSerialization.m in Sources */,
 				36070EEC1D61ABB2003B1A79 /* MASConstraint.m in Sources */,
+				36712F7C1D65FB7700A520AA /* CommodityCarouselModel.m in Sources */,
+				36712F821D65FC2A00A520AA /* CommodityCarouselViewModel.m in Sources */,
 				36BC47771D645D9F00ECE508 /* BaseTabBarController.m in Sources */,
 				36070F081D61ABB2003B1A79 /* UIScrollView+MJRefresh.m in Sources */,
 				36070EDE1D61ABB2003B1A79 /* AFAutoPurgingImageCache.m in Sources */,
@@ -2438,6 +2478,7 @@
 				36070F161D61ABB2003B1A79 /* UIImage+WebP.m in Sources */,
 				36070EF01D61ABB2003B1A79 /* MASViewConstraint.m in Sources */,
 				36070F151D61ABB2003B1A79 /* UIImage+MultiFormat.m in Sources */,
+				36712F851D65FC3F00A520AA /* CommodityCollectionViewModel.m in Sources */,
 				36BC477D1D645D9F00ECE508 /* HeadTitleScrollView.m in Sources */,
 				36BC47591D64359300ECE508 /* MCollectionViewController.m in Sources */,
 				36070EEF1D61ABB2003B1A79 /* MASViewAttribute.m in Sources */,
@@ -2454,7 +2495,6 @@
 				36070ED91D61ABB2003B1A79 /* AFNetworkReachabilityManager.m in Sources */,
 				36070EFB1D61ABB2003B1A79 /* MJRefreshHeader.m in Sources */,
 				36070F001D61ABB2003B1A79 /* MJRefreshBackNormalFooter.m in Sources */,
-				362BF3B21D632D08002099D1 /* GoodstuffHeadView.m in Sources */,
 				36070F041D61ABB2003B1A79 /* MJRefreshStateHeader.m in Sources */,
 				36070E2A1D61ABB2003B1A79 /* AssistantTool.m in Sources */,
 				36070E261D61ABB2003B1A79 /* UIScreen+Additions.m in Sources */,
