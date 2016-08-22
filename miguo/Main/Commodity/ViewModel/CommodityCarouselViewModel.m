@@ -8,7 +8,6 @@
 
 #import "CommodityCarouselViewModel.h"
 #import "CommodityCarouselModel.h"
-#import "NetworkManager.h"
 
 @implementation CommodityCarouselViewModel
 
@@ -20,14 +19,14 @@
         CommodityCarouselModel *carouseModel = [CommodityCarouselModel mj_objectWithKeyValues:dataResponse];
         
         NSArray *array = carouseModel.data;
-        if (_returnBlock) {
-            _returnBlock(array);
+        if (_carouselReturnBlock) {
+            _carouselReturnBlock(array);
         }
         
     } Failure:^(NSError *error) {
         
         NSLog(@"--- error --- : %@", error);
-        _errorBlock(error);
+        _carouselErrorBlock(error);
         
     }];
 }

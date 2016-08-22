@@ -14,6 +14,7 @@
     
     if ([self init]) {
         self.headerReferenceSize = headerSize;
+        NSLog(@"-- headerSize -- %@", NSStringFromCGSize(headerSize));
     }
     return self;
 }
@@ -23,9 +24,10 @@
     self = [super init];
     if (self) {
         CGFloat collectionW = (SCREEN_WIDTH - 5)/2;
-        CGFloat collectionH = 290;
+        CGFloat collectionH = 250;
         self.minimumLineSpacing = 5;
         self.minimumInteritemSpacing = 5;
+        self.sectionInset = UIEdgeInsetsMake(5, 0, 0, 0);
         self.itemSize = CGSizeMake(collectionW, collectionH);
         self.scrollDirection = UICollectionViewScrollDirectionVertical; 
     }

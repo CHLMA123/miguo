@@ -9,6 +9,8 @@
 #import "MCollectionViewController.h"
 #import "MCollectionView.h"
 #import "MCollectionFlowLayout.h"
+#import "CommodityCollectionViewModel.h"
+#import "CommodityCarouselViewModel.h"
 
 #define FlexHight SCREEN_HEIGHT - 95
 
@@ -27,6 +29,14 @@
 @property (nonatomic, strong) MCollectionView *mLeftCollection;
 @property (nonatomic, strong) MCollectionView *mMiddCollection;
 @property (nonatomic, strong) MCollectionView *mRightCollection;
+
+@property (nonatomic, strong) NSArray *mListArray;
+@property (nonatomic, strong) NSArray *mButtonArray;
+@property (nonatomic, strong) NSArray *mScrollDataArray;
+
+@property (nonatomic, strong) MCollectionView *firstCollection;
+
+@property (nonatomic, strong) UIButton *backToTopBtn;
 
 @end
 
@@ -84,7 +94,28 @@
     
     [self createScrollCollectionView];
     
+//    _backToTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _backToTopBtn.frame = CGRectMake(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 200, 40, 40);
+//    _backToTopBtn.layer.cornerRadius = 20;
+//    _backToTopBtn.layer.borderColor = [UIColor blackColor].CGColor;
+//    _backToTopBtn.clipsToBounds = YES;
+//    _backToTopBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+//    _backToTopBtn.hidden = YES;
+//    [_backToTopBtn setBackgroundImage:[UIImage imageNamed:@"go_top"] forState:UIControlStateNormal];
+//    [_backToTopBtn setTitle:@"回顶部" forState:UIControlStateNormal];
+//    [_backToTopBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//    [_backToTopBtn setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
+//    [_backToTopBtn addTarget:self action:@selector(backToTopAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_backToTopBtn];
+
+    
 }
+
+//- (void)backToTopAction{
+//    
+//    self.mainTabv.contentOffset = CGPointZero;
+//    _backToTopBtn.hidden = YES;
+//}
 
 - (void)createScrollCollectionView{
     
@@ -102,18 +133,75 @@
 
 - (void)setUpleftCollectionView{
     
+    [self getCarouselDataWithNetUrl:_mCarouselViewUrl];
+    [self getListDataWithNetUrl:_mMainContentUrl];
+    
     CGSize headerSize = CGSizeZero;
     if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
-        headerSize = CGSizeMake(SCREEN_WIDTH, 330);
+        headerSize = CGSizeMake(SCREEN_WIDTH, 300);
     }else{
         headerSize = CGSizeMake(SCREEN_WIDTH, 360);
     }
     MCollectionFlowLayout *leftFlowLayout = [[MCollectionFlowLayout alloc] initHeaderReferenceSize:headerSize];
-    MCollectionView *leftCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, FlexHight) collectionViewLayout:leftFlowLayout withCount:30 withSectionHeaderClassName:_resuableViewClassName];
-    leftCollection.mCarouselViewUrl = _mCarouselViewUrl;
-    [_contentScrollView addSubview:leftCollection];
-    [_mCollectionViewArray addObject:leftCollection];
+    _firstCollection =[[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49) collectionViewLayout:leftFlowLayout withHeaderClassName:_resuableViewClassName];
+
+    _firstCollection.mCarouselViewUrl = _mCarouselViewUrl;
     
+    __weak typeof(self) weakself = self;
+    
+    _firstCollection.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        __strong typeof(weakself) self = weakself;
+        [self reloadMoreCommodityListData];
+        
+    }];
+    [_contentScrollView addSubview:_firstCollection];
+    [_mCollectionViewArray addObject:_firstCollection];
+    
+}
+
+- (void)reloadMoreCommodityListData{
+    NSLog(@"reloadMoreCommodityListData");
+    [_firstCollection.mj_footer beginRefreshing];
+    sleep(2);
+    [_firstCollection.mj_footer endRefreshing];
+}
+
+- (void)getCarouselDataWithNetUrl:(NSString *)neturl{
+    
+    _mScrollDataArray = [NSArray array];
+    
+    CommodityCarouselViewModel *carouselViewModel = [[CommodityCarouselViewModel alloc] init];
+    carouselViewModel.carouselReturnBlock = ^(id returnValue){
+        
+        _mScrollDataArray = returnValue;
+        NSLog(@"--- _mScrollDataArray --- %@", _mScrollDataArray);
+        [_firstCollection commitCarouselImageDataArray:_mScrollDataArray];
+        
+    };
+    carouselViewModel.carouselErrorBlock = ^(id errorCode){
+        
+        NSLog(@"%@",errorCode);
+    };
+    [carouselViewModel getCarouselData:neturl];
+    
+}
+
+- (void)getListDataWithNetUrl:(NSString *)url{
+    
+    _mListArray = [NSArray array];
+    _mButtonArray = [NSArray array];
+    
+    CommodityCollectionViewModel *collectionViewModel = [[CommodityCollectionViewModel alloc] init];
+    collectionViewModel.returnBlock = ^(id returnValue1, id returnValue2){
+        _mListArray = returnValue1;
+        _mButtonArray = returnValue2;
+        [_firstCollection commitListContentDataArray:_mListArray withButtonDataArray:_mButtonArray];
+        _firstCollection.itemCount = _mListArray.count;
+    };
+    collectionViewModel.errorBlock = ^(id error){
+        NSLog(@"%@", error);
+    };
+    [collectionViewModel getCollectionData:_mMainContentUrl withPageNum:0];
 }
 
 - (void)setUpMoreCollectionView{
@@ -121,8 +209,9 @@
     for (NSInteger i = 1; i < _titleArrar.count; i ++) {
         
         CGFloat mCollectionX = SCREEN_WIDTH * i;
-        MCollectionView *mCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(mCollectionX, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout withCount:30 withSectionHeaderClassName:nil];
+        MCollectionView *mCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(mCollectionX, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout];
         [_contentScrollView addSubview:mCollection];
+
         [_mCollectionViewArray addObject:mCollection];
         
         if (i % 3 == 0) {

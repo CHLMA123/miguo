@@ -26,7 +26,8 @@
 
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.25];
+//        self.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.25];
+        self.backgroundColor = RGB_White;
         [self commitInitView];
     }
     return self;
@@ -52,24 +53,39 @@
     _oldPriceLbl.textAlignment = NSTextAlignmentCenter;
     _oldPriceLbl.font = SysFontOfSize_15;
     _oldPriceLbl.textColor = RGB_Black;
+    
     [self addSubview:_oldPriceLbl];
     
     
-    _goodsImageV.backgroundColor    = RGB_LightBlue;
-    _descriptionLbl.backgroundColor = RGB_LightRed;
-    _nowPriceLbl.backgroundColor    = RGB_Lightgreen;
-    _oldPriceLbl.backgroundColor    = RGB_LightOrange;
+//    _goodsImageV.backgroundColor    = RGB_LightBlue;
+//    _descriptionLbl.backgroundColor = RGB_LightRed;
+//    _nowPriceLbl.backgroundColor    = RGB_Lightgreen;
+//    _oldPriceLbl.backgroundColor    = RGB_LightOrange;
 }
 
 - (void)layoutSubviews{
     
     [super layoutSubviews];
-    _goodsImageV.frame = CGRectMake(0, 0, self.width, self.width);
-    CGFloat smallH = (self.height - self.width - 30)/2;
+    _goodsImageV.frame = CGRectMake(0, 0, self.width, self.width);//800 * 800
+//    _goodsImageV.alpha = 0.3;//检查View复用问题
+    CGFloat smallH = (self.height - self.width)/2;
     
-    _descriptionLbl.frame = CGRectMake(0, CGRectGetMaxY(_goodsImageV.frame) + 10, self.width, smallH);
-    _nowPriceLbl.frame = CGRectMake((self.width - 50)/2, CGRectGetMaxY(_descriptionLbl.frame) + 10, 50, smallH);
-    _oldPriceLbl.frame = CGRectMake(CGRectGetMaxX(_nowPriceLbl.frame) + 5, CGRectGetMaxY(_descriptionLbl.frame) + 10, 50, smallH);
+    _descriptionLbl.frame = CGRectMake(0, CGRectGetMaxY(_goodsImageV.frame), self.width, smallH);
+    _nowPriceLbl.frame = CGRectMake((self.width - 45)/2, CGRectGetMaxY(_descriptionLbl.frame), 45, smallH);
+    _oldPriceLbl.frame = CGRectMake(CGRectGetMaxX(_nowPriceLbl.frame), CGRectGetMaxY(_descriptionLbl.frame), 45, smallH);
+}
+
+- (void)fillCellWithModel:(list *)datamodel{
+    
+    [_goodsImageV sd_setImageWithURL:[NSURL URLWithString:datamodel.pic_url]];
+    _descriptionLbl.text = datamodel.des;
+    _nowPriceLbl.text = datamodel.now_price;
+    NSMutableAttributedString *stringLbl = [[NSMutableAttributedString alloc] initWithString:datamodel.origin_price];
+    NSInteger len = stringLbl.length;
+    
+    [stringLbl addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, len)];
+    _oldPriceLbl.attributedText = stringLbl;
+    
 }
 
 @end

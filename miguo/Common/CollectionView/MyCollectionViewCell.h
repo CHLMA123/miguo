@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommodityCollectionModel.h"
 
 @interface MyCollectionViewCell : UICollectionViewCell
+
+- (void)fillCellWithModel:(list *)datamodel;
 
 @end

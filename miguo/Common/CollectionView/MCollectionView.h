@@ -10,8 +10,15 @@
 
 @interface MCollectionView : UICollectionView
 
+@property (nonatomic, assign) NSInteger itemCount;
+
 @property (nonatomic, assign) NSString *mCarouselViewUrl;       //Carousel View URL
 
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout withCount:(NSInteger)count withSectionHeaderClassName:(NSString *)headerclassname;
+- (instancetype)initWithFrame:(CGRect)frame
+         collectionViewLayout:(UICollectionViewLayout *)viewlayout
+          withHeaderClassName:(NSString *)headerclassname;
 
+- (void)commitCarouselImageDataArray:(NSArray *)imagearray;
+
+- (void)commitListContentDataArray:(NSArray *)listarray withButtonDataArray:(NSArray *)buttonarray;
 @end

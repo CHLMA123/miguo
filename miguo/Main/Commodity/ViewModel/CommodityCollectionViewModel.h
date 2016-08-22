@@ -8,7 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^ReturnValueBlock) (id returnValue1, id returnValue2);
+
+typedef void (^ErrorCodeBlock) (id errorCode);
+
 @interface CommodityCollectionViewModel : NSObject
+
+@property (nonatomic,copy) ReturnValueBlock returnBlock;
+
+@property (nonatomic,copy) ErrorCodeBlock errorBlock;
 
 - (void)getCollectionData:(NSString *)url withPageNum:(NSInteger)page;
 

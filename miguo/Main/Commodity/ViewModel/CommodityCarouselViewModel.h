@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^ReturnValueBlock) (id returnValue);
-typedef void (^ErrorCodeBlock) (id errorCode);
+typedef void (^CarouselReturnValueBlock) (id returnValue);
+
+typedef void (^CarouselErrorCodeBlock) (id errorCode);
 
 @interface CommodityCarouselViewModel : NSObject
 
-@property (nonatomic,copy) ReturnValueBlock returnBlock;
-@property (nonatomic,copy) ErrorCodeBlock errorBlock;
+@property (nonatomic,copy) CarouselReturnValueBlock carouselReturnBlock;
+
+@property (nonatomic,copy) CarouselErrorCodeBlock carouselErrorBlock;
 
 - (void)getCarouselData:(NSString *)url;
 

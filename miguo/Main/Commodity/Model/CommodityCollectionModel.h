@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface category_s :NSObject
+@interface category_s :NSObject    //轮播图之下 collection之上结构
 @property (nonatomic , copy) NSString              * is_web;
 @property (nonatomic , copy) NSString              * pic;
 @property (nonatomic , copy) NSString              * url;
@@ -17,7 +17,7 @@
 
 @end
 
-@interface list :NSObject
+@interface list :NSObject    //collection整个结构
 @property (nonatomic , copy) NSString              * discount;
 @property (nonatomic , copy) NSString              * xpic;
 @property (nonatomic , copy) NSString              * des;
@@ -37,10 +37,10 @@
 
 @end
 
-@interface CommodityCollectionModel :NSObject
+@interface CommodityCollectionModel :NSObject    //网络请求整个结构
 @property (nonatomic , strong) NSArray              * category_s;
 @property (nonatomic , strong) NSArray              * list;
-@property (nonatomic , copy) NSString              * js;
+@property (nonatomic , copy  ) NSString              * js;
 @property (nonatomic , strong) NSArray              * schename;
 
 @end

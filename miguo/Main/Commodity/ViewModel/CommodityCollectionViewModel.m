@@ -13,14 +13,18 @@
 
 - (void)getCollectionData:(NSString *)url withPageNum:(NSInteger)page{
 
-    url = @"http://zhekou.repai.com/shop/discount/api/listnew1.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&page=1";
     [[NetworkManager shareInstance] GET:url Parameters:nil Success:^(id responseObject) {
-        NSDictionary *dic = (NSDictionary *)responseObject;
-        NSLog(@"----- %@ -----", dic);
+        
+        CommodityCollectionModel *model = [[CommodityCollectionModel alloc] init];
+        model = [CommodityCollectionModel mj_objectWithKeyValues:responseObject];
+        NSArray *listArray = model.list;
+        NSArray *category = model.category_s;
+        
+        _returnBlock(listArray, category);
         
     } Failure:^(NSError *error) {
         
-        
+        _errorBlock(error);
     }];
 
 }

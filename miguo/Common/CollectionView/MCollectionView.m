@@ -10,13 +10,20 @@
 #import "MyCollectionViewCell.h"
 #import "CommodityHeadView.h"
 #import "GoodstuffHeadView.h"
+#import "CommodityCollectionModel.h"
 
 static NSString *collectionID = @"MyCollectionItem";
 @interface MCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, assign) NSInteger itemCount;
+@property (nonatomic, strong) NSArray *listArray;
+
+@property (nonatomic, strong) NSArray *buttonArray;
+
+@property (nonatomic, strong) NSArray *carouselArray;
 
 @property (nonatomic, assign) NSString *resuableViewClassName;
+
+@property (nonatomic, strong) CommodityHeadView *commodityHeader;
 
 @end
 
@@ -26,26 +33,28 @@ static NSString *collectionID = @"MyCollectionItem";
 {
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
-        
-        self.backgroundColor = [UIColor whiteColor];
-        self.showsHorizontalScrollIndicator = YES;
-        self.showsVerticalScrollIndicator = NO;
+        _listArray = [NSArray array];
+        self.backgroundColor = MIGUOBackgroundColor;
+        self.showsHorizontalScrollIndicator = NO;
+        self.showsVerticalScrollIndicator = YES;
         self.delegate = self;
         self.dataSource = self;
-        [self setBounces:NO];
+//        [self setBounces:NO];
         [self registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:collectionID];
     }
     
     return self;
 }
 
-
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout withCount:(NSInteger)count withSectionHeaderClassName:(NSString *)headerclassname
+- (instancetype)initWithFrame:(CGRect)frame
+         collectionViewLayout:(UICollectionViewLayout *)viewlayout
+          withHeaderClassName:(NSString *)headerclassname
 {
-    self = [self initWithFrame:frame collectionViewLayout:layout];
+    self = [self initWithFrame:frame collectionViewLayout:viewlayout];
     if (self) {
-        _itemCount = count;
+        
         _resuableViewClassName = headerclassname;
+        
         if ([headerclassname isEqualToString:@"CommodityHeadView"]) {
             
             [self registerClass:[CommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView"];
@@ -64,13 +73,18 @@ static NSString *collectionID = @"MyCollectionItem";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     MyCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionID forIndexPath:indexPath];
+    if (_listArray.count != 0) {
+        
+        list *model = [list mj_objectWithKeyValues:_listArray[indexPath.item]];
+        [cell fillCellWithModel:model];
+    }
     return cell;
     
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.itemCount;
+    return _listArray.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -79,17 +93,15 @@ static NSString *collectionID = @"MyCollectionItem";
     if (kind == UICollectionElementKindSectionHeader) {
         if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
             
-           CommodityHeadView *sectionHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView" forIndexPath:indexPath];
-//            [sectionHeader fillHeaderSectionViewwithImageArray:@[@"1",@"2",@"1",@"2",@"1"]];
-            [sectionHeader fillHeaderSectionWithNetUrl:_mCarouselViewUrl];
-            reusableView = sectionHeader;
+            _commodityHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView" forIndexPath:indexPath];
+            reusableView = _commodityHeader;
             
         }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
             GoodstuffHeadView *sectionHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView" forIndexPath:indexPath];
             reusableView = sectionHeader;
+            reusableView.backgroundColor = RGB_LightRed;
         }
     }
-    reusableView.backgroundColor = RGB_LightRed;
     return reusableView;
 }
 
@@ -101,6 +113,21 @@ static NSString *collectionID = @"MyCollectionItem";
 }
 
 
+- (void)commitCarouselImageDataArray:(NSArray *)imagearray{
+    
+    _carouselArray = imagearray;
+    [_commodityHeader fillCarouselViewWithArray:_carouselArray];
+    
+}
+
+- (void)commitListContentDataArray:(NSArray *)listarray withButtonDataArray:(NSArray *)buttonarray{
+    
+    _listArray = listarray;
+    _buttonArray = buttonarray;
+    
+    [_commodityHeader fillButtonViewWithArray:_buttonArray];
+    [self reloadData];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
