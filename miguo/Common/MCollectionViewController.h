@@ -11,10 +11,14 @@
 
 @interface MCollectionViewController : BaseViewController
 
-@property (nonatomic, strong) NSArray *titleArrar;
+@property (nonatomic, strong) NSArray *titleArrar;              //标题栏Init数据源
 
-@property (nonatomic, assign) NSString *resuableViewClassName;
+@property (nonatomic, assign) NSString *mMainContentUrl;        //Collection View URL
 
-@property (nonatomic, strong) HeadTitleScrollView *headTitleScrollView;
+
+//以下两个属性用与初始化MCollectionView的SectionHeader
+@property (nonatomic, assign) NSString *mCarouselViewUrl;       //Carousel View URL
+
+@property (nonatomic, assign) NSString *resuableViewClassName;  //SectionHeader Class
 
 @end

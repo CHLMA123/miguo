@@ -10,6 +10,8 @@
 
 @interface CommodityHeadView : BaseCollectionResuableView
 
-- (void)fillHeaderSectionViewwithImageArray:(NSArray *)imagearray;
+- (void)fillHeaderSectionWithNetUrl:(NSString *)neturl;
+
+- (void)handleHeaderWithImageModelArray:(NSArray *)imageModelArray;
 
 @end

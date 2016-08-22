@@ -1,23 +1,25 @@
 //
-//  BaseViewController.m
+//  TestViewController.m
 //  miguo
 //
-//  Created by MCL on 16/8/15.
+//  Created by MCL on 16/8/22.
 //  Copyright © 2016年 CHLMA. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "TestViewController.h"
 
-@interface BaseViewController ()
+@interface TestViewController ()
 
 @end
 
-@implementation BaseViewController
+@implementation TestViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    NSLog(@" -----BaseViewController------ %f : %f", SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    self.title = _model.title;
+    self.view.backgroundColor = RGB_Random;
 }
 
 - (void)didReceiveMemoryWarning {

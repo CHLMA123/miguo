@@ -45,7 +45,7 @@
             }else{
                 btn.frame = CGRectMake(0, 0, titleW, 30);
             }
-            btn.backgroundColor = [UIColor colorWithRed:arc4random()%256/255. green:arc4random()%256/255. blue:arc4random()%256/255. alpha:1];
+            btn.backgroundColor = RGB_Random;
             
             [self addSubview:btn];
             [btn setTitle:titleStr forState:UIControlStateNormal];

@@ -7,6 +7,8 @@
 //
 
 #import "CommodityHeadView.h"
+#import "CommodityCarouselModel.h"
+#import "CommodityCarouselViewModel.h"
 
 @interface CommodityHeadView ()<UIScrollViewDelegate>
 
@@ -18,28 +20,24 @@
 @property (nonatomic, assign) NSInteger mScrollViewH;       // 轮播图高度
 @property (nonatomic, assign) NSInteger mPageControlW;      // 分页指示宽度
 
+@property (nonatomic, strong) NSArray *mCarouselModelArray;
+
 @end
 
 @implementation CommodityHeadView
 
-- (void)fillHeaderSectionViewwithImageArray:(NSArray *)imagearray{
-    _mScrollSubjecData = imagearray;
-    [self handleScrollView];
-}
-
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        _mScrollViewH = 160;
+        _mScrollViewH = 120;
         _mPageControlW = 150;
-        _mScrollSubjecData = @[@"1", @"2", @"3", @"4", @"5"];
         [self commitInitViews];
     }
     return self;
 }
 
 - (void)commitInitViews{
-
+    
     _mScrollView = [[UIScrollView alloc] init];
     _mScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _mScrollViewH);
     _mScrollView.backgroundColor = [UIColor lightGrayColor];
@@ -55,11 +53,40 @@
     _mPageControl.pageIndicatorTintColor = [UIColor whiteColor];
     _mPageControl.currentPageIndicatorTintColor = [UIColor redColor];
     _mPageControl.userInteractionEnabled = NO;
-//    _mPageControl.center = CGPointMake(_mScrollView.center.x, _mScrollViewH - 30);
+    //    _mPageControl.center = CGPointMake(_mScrollView.center.x, _mScrollViewH - 30);
     
     [self addSubview:_mScrollView];
     [self addSubview:_mPageControl];
 }
+
+- (void)fillHeaderSectionWithNetUrl:(NSString *)neturl{
+    
+    
+    NSLog(@"--- neturl---%@", neturl);
+    _mCarouselModelArray = [NSMutableArray array];
+    
+    CommodityCarouselViewModel *viewModel = [[CommodityCarouselViewModel alloc] init];
+    viewModel.returnBlock = ^(id returnValue){
+        
+        _mCarouselModelArray = returnValue;
+        NSLog(@"--- _mCarouselModelArray --- %@", _mCarouselModelArray);
+        
+        [self handleHeaderWithImageModelArray:_mCarouselModelArray];
+
+    };
+    viewModel.errorBlock = ^(id errorCode){
+        
+        NSLog(@"%@",errorCode);
+    };
+    [viewModel getCarouselData:neturl];
+
+}
+
+- (void)handleHeaderWithImageModelArray:(NSArray *)imageModelArray{
+    _mScrollSubjecData = imageModelArray;
+    [self handleScrollView];
+}
+
 
 #pragma mark - ScrollView数据处理
 - (void)handleScrollView{
@@ -76,26 +103,39 @@
     [_mScrollView addSubview:lastImage];
     
     for (int i = 0; i < _mScrollSubjecData.count; i++) {
-//        GoodsSubjectModel * model = [[GoodsSubjectModel alloc] init];
-//        model = (GoodsSubjectModel *)self.subjectModelMArr[i];
-//        
-//        NSString *imageUrl = model.home_banner;
-//        if (i == 0) {
-//            [lastImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_load"]];
-//        }
-//        if (i == self.subjectModelMArr.count -1) {
-//            [firstImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_load"]];
-//        }
+        data * model = [data mj_objectWithKeyValues:_mScrollSubjecData[i]];
+        
+        NSString *imageUrl = model.iphoneimg;
+        if (i == 0) {
+            [lastImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"img_bg_320x121_"]];
+        }
+        if (i == _mScrollSubjecData.count -1) {
+            [firstImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"img_bg_320x121_"]];
+        }
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.frame = CGRectMake((i+1) *SCREEN_WIDTH, 0, SCREEN_WIDTH, _mScrollViewH);
         imageView.tag = 100 + i;
+
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"img_bg_320x121_"]];
         
-        imageView.image = [UIImage imageNamed:@"img_bg_320x121_"];
-//        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_load"]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mCarouselADPush:)];
+        [imageView addGestureRecognizer:tap];
+        imageView.userInteractionEnabled = YES;
         
         [_mScrollView addSubview:imageView];
         [self startTimer];
     }
+}
+
+- (void)mCarouselADPush:(UITapGestureRecognizer *)tap{
+    
+    NSInteger dd = tap.view.tag - 100;
+    data * model = [data mj_objectWithKeyValues:_mScrollSubjecData[dd]];
+    
+//    CommodityCarouselViewModel *model = [[CommodityCarouselViewModel alloc] init];
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"mCarouselADPush" object:nil userInfo:@{@"data":model}];
+    
 }
 
 #pragma mark - UIScrollViewDelegate

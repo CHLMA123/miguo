@@ -53,10 +53,10 @@
 
 - (void)setUpViews{
     
-    _tableDataArrar1 = @[@"淘宝订单"];
-    _tableImageArrar1 = @[@"bar_one",@"bar_two",@"bar_three",@"bar_four",@"bar_five"];
-    _tableDataArrar2 = @[@"购物车",@"兑换记录",@"收货地址",@"客服中心",@"我的收藏",@"设置"];
-    _tableImageArrar2 = @[@"gouwuche_btn_17x17_",@"liulanjilu_17x17_",@"shouhuodizhi_17x17_",@"kefu_17x17_",@"shoucang_17x17_",@"shezhi_17x17_"];
+    _tableDataArrar1    = @[@"淘宝订单"];
+    _tableImageArrar1   = @[@"bar_one",@"bar_two",@"bar_three",@"bar_four",@"bar_five"];
+    _tableDataArrar2    = @[@"购物车",@"兑换记录",@"收货地址",@"客服中心",@"我的收藏",@"设置"];
+    _tableImageArrar2   = @[@"gouwuche_btn_17x17_",@"liulanjilu_17x17_",@"shouhuodizhi_17x17_",@"kefu_17x17_",@"shoucang_17x17_",@"shezhi_17x17_"];
 
     _headImageView = [[UIImageView alloc] init];
     _headImageView.frame = CGRectMake(0, 0,SCREEN_WIDTH, 130);
@@ -67,8 +67,7 @@
     _aboutTableView.delegate = self;
     _aboutTableView.dataSource = self;
     [self.view addSubview:_aboutTableView];
-//    _aboutTableView.sectionHeaderHeight = 5;
-//    _aboutTableView.sectionFooterHeight = 0;
+    
     _aboutTableView.tableFooterView = [[UIView alloc] init];
     
 

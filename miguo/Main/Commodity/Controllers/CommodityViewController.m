@@ -8,6 +8,8 @@
 
 #import "CommodityViewController.h"
 #import "CommodityHeadView.h"
+#import "CommodityCarouselModel.h"
+#import "TestViewController.h"
 
 @interface CommodityViewController ()
 
@@ -19,17 +21,24 @@
     
     self.resuableViewClassName = @"CommodityHeadView";
     
-    NSString *mScrollViewUrl = @"http://cloud.repaiapp.com/yunying/spzt.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo";
+    self.mCarouselViewUrl = @"http://cloud.repaiapp.com/yunying/spzt.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo";
         
-    NSString *mMainCollectionUrl = @"http://zhekou.repai.com/shop/discount/api/listnew1.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&page=1";
+    self.mMainContentUrl = @"http://zhekou.repai.com/shop/discount/api/listnew1.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&page=1";
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
     [self setUpTitleView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carouselADPush:) name:@"mCarouselADPush" object:nil];
+}
+
+- (void)carouselADPush:(NSNotification *)notify{
     
-    
-    
+    NSDictionary *dic = (NSDictionary *)notify.userInfo;
+    data *model = [dic objectForKey:@"data"];
+    TestViewController *vc = [[TestViewController alloc] init];
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

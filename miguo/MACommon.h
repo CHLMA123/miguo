@@ -88,6 +88,8 @@
 #define RGB_White   [UIColor whiteColor]        //白色
 #define RGB_Black   [UIColor blackColor]        //黑色
 
+#define RGB_Random    [UIColor colorWithRed:arc4random()%256/255. green:arc4random()%256/255. blue:arc4random()%256/255. alpha:1]
+
 #define RGB_Lightgreen      [[UIColor greenColor] colorWithAlphaComponent:0.25];
 #define RGB_LightPurple     [[UIColor purple] colorWithAlphaComponent:0.25];
 #define RGB_LightBlue       [[UIColor blueColor] colorWithAlphaComponent:0.35];

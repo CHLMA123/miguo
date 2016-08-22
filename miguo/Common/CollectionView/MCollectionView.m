@@ -14,6 +14,10 @@
 static NSString *collectionID = @"MyCollectionItem";
 @interface MCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (nonatomic, assign) NSInteger itemCount;
+
+@property (nonatomic, assign) NSString *resuableViewClassName;
+
 @end
 
 @implementation MCollectionView
@@ -36,17 +40,17 @@ static NSString *collectionID = @"MyCollectionItem";
 }
 
 
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout withCount:(NSInteger)count withcellKind:(NSString *)cellKind
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout withCount:(NSInteger)count withSectionHeaderClassName:(NSString *)headerclassname
 {
     self = [self initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         _itemCount = count;
-        _resuableViewClassName = cellKind;
-        if ([cellKind isEqualToString:@"CommodityHeadView"]) {
+        _resuableViewClassName = headerclassname;
+        if ([headerclassname isEqualToString:@"CommodityHeadView"]) {
             
             [self registerClass:[CommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView"];
             
-        }else if ([cellKind isEqualToString:@"GoodstuffHeadView"]){
+        }else if ([headerclassname isEqualToString:@"GoodstuffHeadView"]){
             [self registerClass:[CommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView"];
         }
 
@@ -76,7 +80,8 @@ static NSString *collectionID = @"MyCollectionItem";
         if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
             
            CommodityHeadView *sectionHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView" forIndexPath:indexPath];
-            [sectionHeader fillHeaderSectionViewwithImageArray:@[@"1",@"2",@"1",@"2",@"1"]];
+//            [sectionHeader fillHeaderSectionViewwithImageArray:@[@"1",@"2",@"1",@"2",@"1"]];
+            [sectionHeader fillHeaderSectionWithNetUrl:_mCarouselViewUrl];
             reusableView = sectionHeader;
             
         }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){

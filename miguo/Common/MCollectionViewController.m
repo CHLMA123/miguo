@@ -14,6 +14,8 @@
 
 @interface MCollectionViewController ()<UIScrollViewDelegate>
 
+@property (nonatomic, strong) HeadTitleScrollView *headTitleScrollView;
+
 @property (nonatomic, assign) NSInteger currentIndex;
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
@@ -107,7 +109,8 @@
         headerSize = CGSizeMake(SCREEN_WIDTH, 360);
     }
     MCollectionFlowLayout *leftFlowLayout = [[MCollectionFlowLayout alloc] initHeaderReferenceSize:headerSize];
-    MCollectionView *leftCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, FlexHight) collectionViewLayout:leftFlowLayout withCount:30 withcellKind:_resuableViewClassName];
+    MCollectionView *leftCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, FlexHight) collectionViewLayout:leftFlowLayout withCount:30 withSectionHeaderClassName:_resuableViewClassName];
+    leftCollection.mCarouselViewUrl = _mCarouselViewUrl;
     [_contentScrollView addSubview:leftCollection];
     [_mCollectionViewArray addObject:leftCollection];
     
@@ -118,7 +121,7 @@
     for (NSInteger i = 1; i < _titleArrar.count; i ++) {
         
         CGFloat mCollectionX = SCREEN_WIDTH * i;
-        MCollectionView *mCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(mCollectionX, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout withCount:30 withcellKind:nil];
+        MCollectionView *mCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(mCollectionX, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout withCount:30 withSectionHeaderClassName:nil];
         [_contentScrollView addSubview:mCollection];
         [_mCollectionViewArray addObject:mCollection];
         
@@ -130,7 +133,6 @@
             mCollection.backgroundColor = [UIColor greenColor];
         }
 
-        
     }
     
 }

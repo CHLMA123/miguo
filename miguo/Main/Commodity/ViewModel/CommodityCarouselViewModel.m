@@ -13,13 +13,21 @@
 @implementation CommodityCarouselViewModel
 
 - (void)getCarouselData:(NSString *)url{
-    url = @"http://cloud.repaiapp.com/yunying/spzt.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo";
+
     [[NetworkManager shareInstance] GET:url Parameters:nil Success:^(id responseObject) {
-        NSDictionary *dic = (NSDictionary *)responseObject;
-        NSLog(@"----- %@ -----", dic);
+        
+        NSDictionary *dataResponse = (NSDictionary *)responseObject;
+        CommodityCarouselModel *carouseModel = [CommodityCarouselModel mj_objectWithKeyValues:dataResponse];
+        
+        NSArray *array = carouseModel.data;
+        if (_returnBlock) {
+            _returnBlock(array);
+        }
         
     } Failure:^(NSError *error) {
         
+        NSLog(@"--- error --- : %@", error);
+        _errorBlock(error);
         
     }];
 }
