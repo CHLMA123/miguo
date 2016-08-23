@@ -10,4 +10,6 @@
 
 @interface GoodstuffHeadView : BaseCollectionResuableView
 
+- (void)fillHeaderViewWithArray:(NSArray *)imageModelArray;
+
 @end

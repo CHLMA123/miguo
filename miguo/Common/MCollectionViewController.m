@@ -9,8 +9,11 @@
 #import "MCollectionViewController.h"
 #import "MCollectionView.h"
 #import "MCollectionFlowLayout.h"
+
 #import "CommodityCollectionViewModel.h"
 #import "CommodityCarouselViewModel.h"
+
+//#import "GoodstuffViewModel.h"
 
 #define FlexHight SCREEN_HEIGHT - 95
 
@@ -38,6 +41,8 @@
 
 @property (nonatomic, strong) UIButton *backAllBtn;
 
+@property (nonatomic, strong) NSArray *mGoodstuffListArray;
+@property (nonatomic, strong) NSArray *mGoodstuffHeadArray;
 
 
 @end
@@ -53,6 +58,7 @@
         
         [self setUpHeadTitleScrollView];
     }
+    [self setUpData];
     
     [self setUpViews];
 }
@@ -60,6 +66,28 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setUpData{
+    
+    if (_mCarouselViewUrl.length > 0) {//首页是否有轮播图
+        
+        _mScrollDataArray = [NSArray array];
+        [self getCarouselDataWithNetUrl:_mCarouselViewUrl];
+    }
+    if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
+        
+        _mListArray = [NSArray array];
+        _mButtonArray = [NSArray array];
+        [self getCommodityDataWithNetUrl:_mMainContentUrl];
+        
+    }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
+        
+        _mGoodstuffHeadArray = [NSArray array];
+        _mGoodstuffListArray = [NSArray array];
+        [self getGoodstuffDataWithNetUrl:_mMainContentUrl];
+    }
+
 }
 
 - (void)setUpHeadTitleScrollView{
@@ -130,10 +158,7 @@
 }
 
 - (void)setUpleftCollectionView{
-    
-    [self getCarouselDataWithNetUrl:_mCarouselViewUrl];
-    [self getListDataWithNetUrl:_mMainContentUrl];
-    
+
     CGSize headerSize = CGSizeZero;
     if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
         headerSize = CGSizeMake(SCREEN_WIDTH, 300);
@@ -165,7 +190,7 @@
 
 - (void)getCarouselDataWithNetUrl:(NSString *)neturl{
     
-    _mScrollDataArray = [NSArray array];
+    
     
     CommodityCarouselViewModel *carouselViewModel = [[CommodityCarouselViewModel alloc] init];
     carouselViewModel.carouselReturnBlock = ^(id returnValue){
@@ -183,10 +208,7 @@
     
 }
 
-- (void)getListDataWithNetUrl:(NSString *)url{
-    
-    _mListArray = [NSArray array];
-    _mButtonArray = [NSArray array];
+- (void)getCommodityDataWithNetUrl:(NSString *)url{
     
     CommodityCollectionViewModel *collectionViewModel = [[CommodityCollectionViewModel alloc] init];
     collectionViewModel.returnBlock = ^(id returnValue1, id returnValue2){
@@ -199,6 +221,12 @@
         NSLog(@"%@", error);
     };
     [collectionViewModel getCollectionData:_mMainContentUrl withPageNum:0];
+}
+
+- (void)getGoodstuffDataWithNetUrl:(NSString *)url{
+    
+//    GoodstuffViewModel *goodstuffViewModel = [[GoodstuffViewModel alloc] init];
+    
 }
 
 - (void)setUpMoreCollectionView{
