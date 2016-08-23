@@ -427,6 +427,8 @@
 		36BC477D1D645D9F00ECE508 /* HeadTitleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47751D645D9F00ECE508 /* HeadTitleScrollView.m */; };
 		36C75A2B1D62ED7800A6D440 /* MTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C75A2A1D62ED7800A6D440 /* MTableViewController.m */; };
 		36C75A481D63158500A6D440 /* SpecialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C75A471D63158500A6D440 /* SpecialViewController.m */; };
+		36E8ED9A1D6C77F50090FF6E /* HaoHuoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E8ED991D6C77F50090FF6E /* HaoHuoViewModel.m */; };
+		36E8ED9D1D6C78520090FF6E /* HaoHuoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E8ED9C1D6C78520090FF6E /* HaoHuoModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -973,6 +975,10 @@
 		36C75A2A1D62ED7800A6D440 /* MTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTableViewController.m; sourceTree = "<group>"; };
 		36C75A461D63158500A6D440 /* SpecialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialViewController.h; sourceTree = "<group>"; };
 		36C75A471D63158500A6D440 /* SpecialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialViewController.m; sourceTree = "<group>"; };
+		36E8ED981D6C77F50090FF6E /* HaoHuoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaoHuoViewModel.h; sourceTree = "<group>"; };
+		36E8ED991D6C77F50090FF6E /* HaoHuoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaoHuoViewModel.m; sourceTree = "<group>"; };
+		36E8ED9B1D6C78520090FF6E /* HaoHuoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaoHuoModel.h; sourceTree = "<group>"; };
+		36E8ED9C1D6C78520090FF6E /* HaoHuoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaoHuoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2026,6 +2032,8 @@
 		36712F741D65F1CF00A520AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				36E8ED9B1D6C78520090FF6E /* HaoHuoModel.h */,
+				36E8ED9C1D6C78520090FF6E /* HaoHuoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2042,6 +2050,8 @@
 		36712F781D65F1CF00A520AA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				36E8ED981D6C77F50090FF6E /* HaoHuoViewModel.h */,
+				36E8ED991D6C77F50090FF6E /* HaoHuoViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2570,6 +2580,7 @@
 				36070EFD1D61ABB2003B1A79 /* MJRefreshAutoNormalFooter.m in Sources */,
 				363F8C431D6A93BB007265B7 /* MJExtensionConst.m in Sources */,
 				36070F181D61ABB2003B1A79 /* UIImageView+WebCache.m in Sources */,
+				36E8ED9A1D6C77F50090FF6E /* HaoHuoViewModel.m in Sources */,
 				360709A91D6197DA003B1A79 /* miguo.xcdatamodeld in Sources */,
 				363F8C481D6A93BB007265B7 /* NSObject+MJClass.m in Sources */,
 				36070F101D61ABB2003B1A79 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -2580,6 +2591,7 @@
 				36070F111D61ABB2003B1A79 /* SDWebImageManager.m in Sources */,
 				36070EE11D61ABB2003B1A79 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				36070E241D61ABB2003B1A79 /* UIControl+Additions.m in Sources */,
+				36E8ED9D1D6C78520090FF6E /* HaoHuoModel.m in Sources */,
 				363F8C4A1D6A93BB007265B7 /* NSObject+MJKeyValue.m in Sources */,
 				36070F161D61ABB2003B1A79 /* UIImage+WebP.m in Sources */,
 				36070EF01D61ABB2003B1A79 /* MASViewConstraint.m in Sources */,
