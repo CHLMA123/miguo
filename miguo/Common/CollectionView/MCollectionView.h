@@ -21,4 +21,6 @@
 - (void)commitCarouselImageDataArray:(NSArray *)imagearray;
 
 - (void)commitListContentDataArray:(NSArray *)listarray withButtonDataArray:(NSArray *)buttonarray;
+
+- (void)commitHeaderImageDataArray:(NSArray *)imagearray ListContentDataArray:(NSArray *)listarray;
 @end

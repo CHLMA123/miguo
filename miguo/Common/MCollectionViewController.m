@@ -13,7 +13,7 @@
 #import "CommodityCollectionViewModel.h"
 #import "CommodityCarouselViewModel.h"
 
-//#import "GoodstuffViewModel.h"
+#import "HaoHuoViewModel.h"
 
 #define FlexHight SCREEN_HEIGHT - 95
 
@@ -163,12 +163,13 @@
     if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
         headerSize = CGSizeMake(SCREEN_WIDTH, 300);
     }else{
-        headerSize = CGSizeMake(SCREEN_WIDTH, 360);
+        headerSize = CGSizeMake(SCREEN_WIDTH, 325);
     }
     MCollectionFlowLayout *leftFlowLayout = [[MCollectionFlowLayout alloc] initHeaderReferenceSize:headerSize];
     _firstCollection =[[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49) collectionViewLayout:leftFlowLayout withHeaderClassName:_resuableViewClassName];
-    _firstCollection.mCarouselViewUrl = _mCarouselViewUrl;
-    
+    if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
+        _firstCollection.mCarouselViewUrl = _mCarouselViewUrl;
+    }
     __weak typeof(self) weakself = self;
     
     _firstCollection.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -189,8 +190,6 @@
 }
 
 - (void)getCarouselDataWithNetUrl:(NSString *)neturl{
-    
-    
     
     CommodityCarouselViewModel *carouselViewModel = [[CommodityCarouselViewModel alloc] init];
     carouselViewModel.carouselReturnBlock = ^(id returnValue){
@@ -225,7 +224,18 @@
 
 - (void)getGoodstuffDataWithNetUrl:(NSString *)url{
     
-//    GoodstuffViewModel *goodstuffViewModel = [[GoodstuffViewModel alloc] init];
+    HaoHuoViewModel *haoHuoViewModel = [[HaoHuoViewModel alloc] init];
+    haoHuoViewModel.hhreturnBlock = ^(id value1, id value2){
+    
+        _mGoodstuffListArray = value1;
+        _mGoodstuffHeadArray = value2;
+        [_firstCollection commitHeaderImageDataArray:_mGoodstuffHeadArray ListContentDataArray:_mGoodstuffListArray];
+        
+    };
+    haoHuoViewModel.hherrorBlock = ^(id error){
+        NSLog(@"%@", error);
+    };
+    [haoHuoViewModel getHaoHuoData:_mMainContentUrl];
     
 }
 

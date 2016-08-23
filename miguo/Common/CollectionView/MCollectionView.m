@@ -25,6 +25,8 @@ static NSString *collectionID = @"MyCollectionItem";
 
 @property (nonatomic, strong) CommodityHeadView *commodityHeader;
 
+@property (nonatomic, strong) GoodstuffHeadView *goodstuffHeadView;
+
 @property (nonatomic, strong) UIButton *backToTopBtn;
 
 @end
@@ -70,7 +72,7 @@ static NSString *collectionID = @"MyCollectionItem";
             [self registerClass:[CommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView"];
             
         }else if ([headerclassname isEqualToString:@"GoodstuffHeadView"]){
-            [self registerClass:[CommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView"];
+            [self registerClass:[GoodstuffHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView"];
         }
 
     }
@@ -95,9 +97,13 @@ static NSString *collectionID = @"MyCollectionItem";
     
     MyCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionID forIndexPath:indexPath];
     if (_listArray.count != 0) {
-        
-        list *model = [list mj_objectWithKeyValues:_listArray[indexPath.item]];
-        [cell fillCellWithModel:model];
+        if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
+            collectlist *model = [collectlist mj_objectWithKeyValues:_listArray[indexPath.item]];
+            [cell fillCellWithModel:model];
+        }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
+            HaoHuolist *model = [HaoHuolist mj_objectWithKeyValues:_listArray[indexPath.item]];
+            [cell fillCellWithHaoHuoModel:model];
+        }
     }
     return cell;
     
@@ -118,9 +124,9 @@ static NSString *collectionID = @"MyCollectionItem";
             reusableView = _commodityHeader;
             
         }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
-            GoodstuffHeadView *sectionHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView" forIndexPath:indexPath];
-            reusableView = sectionHeader;
-            reusableView.backgroundColor = RGB_LightRed;
+            _goodstuffHeadView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView" forIndexPath:indexPath];
+            reusableView = _goodstuffHeadView;
+//            reusableView.backgroundColor = RGB_LightRed;
         }
     }
     return reusableView;
@@ -146,7 +152,7 @@ static NSString *collectionID = @"MyCollectionItem";
     NSLog(@"点击的item---%zd",indexPath.item);
 }
 
-
+#pragma mark - 1 Commodity 数据处理
 - (void)commitCarouselImageDataArray:(NSArray *)imagearray{
     
     _carouselArray = imagearray;
@@ -162,6 +168,19 @@ static NSString *collectionID = @"MyCollectionItem";
     [_commodityHeader fillButtonViewWithArray:_buttonArray];
     [self reloadData];
 }
+
+#pragma mark - 2 Goodstuff 数据处理
+- (void)commitHeaderImageDataArray:(NSArray *)imagearray ListContentDataArray:(NSArray *)listarray{
+    
+    [_goodstuffHeadView fillHeaderViewWithArray:imagearray];
+    
+    _listArray = listarray;
+    
+    [self reloadData];
+    
+}
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

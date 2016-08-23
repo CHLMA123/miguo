@@ -17,7 +17,7 @@
         
         CommodityCollectionModel *model = [[CommodityCollectionModel alloc] init];
         model = [CommodityCollectionModel mj_objectWithKeyValues:responseObject];
-        NSArray *listArray = model.list;
+        NSArray *listArray = model.collectlist;
         NSArray *category = model.category_s;
         
         _returnBlock(listArray, category);

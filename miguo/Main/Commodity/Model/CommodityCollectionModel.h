@@ -17,7 +17,7 @@
 
 @end
 
-@interface list :NSObject    //collection整个结构
+@interface collectlist :NSObject    //collection整个结构
 @property (nonatomic , copy) NSString              * discount;
 @property (nonatomic , copy) NSString              * xpic;
 @property (nonatomic , copy) NSString              * des;
@@ -39,7 +39,7 @@
 
 @interface CommodityCollectionModel :NSObject    //网络请求整个结构
 @property (nonatomic , strong) NSArray              * category_s;
-@property (nonatomic , strong) NSArray              * list;
+@property (nonatomic , strong) NSArray              * collectlist;
 @property (nonatomic , copy  ) NSString              * js;
 @property (nonatomic , strong) NSArray              * schename;
 

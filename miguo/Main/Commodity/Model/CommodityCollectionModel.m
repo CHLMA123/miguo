@@ -10,14 +10,40 @@
 
 @implementation CommodityCollectionModel
 
++ (NSDictionary*)replacedKeyFromPropertyName{
+    
+//    return @{@"collectlist":@"list",
+//             @"js":@"js",
+//             @"category_s":@"category_s",
+//             @"schename":@"schename"
+//             };
+    return @{@"collectlist":@"list",
+    
+             };
+}
+
 @end
 
 @implementation category_s
 
 @end
 
-@implementation list
 
+//* discount;
+//@property (nonatomic , copy) NSString              * xpic;
+//@property (nonatomic , copy) NSString              * des;
+//@property (nonatomic , copy) NSString              * url;
+//@property (nonatomic , copy) NSString              * num_iid;
+//@property (nonatomic , copy) NSString              * pic_url;
+//@property (nonatomic , copy) NSString              * title;
+//@property (nonatomic , copy) NSString              * pingtai_type;
+//@property (nonatomic , copy) NSString              * origin_price;
+//@property (nonatomic , copy) NSString              * end_time;
+//@property (nonatomic , copy) NSString              * now_price;
+//@property (nonatomic , copy) NSString              * begin_time;
+
+
+@implementation collectlist
 @end
 
 @implementation schename

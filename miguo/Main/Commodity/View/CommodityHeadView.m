@@ -97,10 +97,10 @@
     _mButton4.tag = 203;
     [_mButton4 addTarget:self action: @selector(mButtonViewPush:) forControlEvents:UIControlEventTouchUpInside];
     
-    _mButton1.backgroundColor = RGB_Random;
-    _mButton2.backgroundColor = RGB_Random;
-    _mButton3.backgroundColor = RGB_Random;
-    _mButton4.backgroundColor = RGB_Random;
+//    _mButton1.backgroundColor = RGB_Random;
+//    _mButton2.backgroundColor = RGB_Random;
+//    _mButton3.backgroundColor = RGB_Random;
+//    _mButton4.backgroundColor = RGB_Random;
     
     [self addSubview:_mButton1];
     [self addSubview:_mButton2];

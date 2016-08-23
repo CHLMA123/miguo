@@ -10,4 +10,19 @@
 
 @implementation HaoHuoModel
 
++ (NSDictionary*)replacedKeyFromPropertyName{
+    
+    return @{
+             @"HaoHuolist":@"list",
+             };
+}
+
+@end
+
+@implementation market_camp
+
+@end
+
+@implementation HaoHuolist
+
 @end

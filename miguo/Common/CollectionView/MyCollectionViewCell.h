@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CommodityCollectionModel.h"
+#import "HaoHuoModel.h"
 
 @interface MyCollectionViewCell : UICollectionViewCell
 
-- (void)fillCellWithModel:(list *)datamodel;
+- (void)fillCellWithModel:(collectlist *)datamodel;
+
+- (void)fillCellWithHaoHuoModel:(HaoHuolist *)datamodel;
 
 @end

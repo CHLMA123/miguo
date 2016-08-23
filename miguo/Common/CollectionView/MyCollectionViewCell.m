@@ -75,7 +75,7 @@
     _oldPriceLbl.frame = CGRectMake(CGRectGetMaxX(_nowPriceLbl.frame), CGRectGetMaxY(_descriptionLbl.frame), 45, smallH);
 }
 
-- (void)fillCellWithModel:(list *)datamodel{
+- (void)fillCellWithModel:(collectlist *)datamodel{
     
     [_goodsImageV sd_setImageWithURL:[NSURL URLWithString:datamodel.pic_url] placeholderImage:[UIImage imageNamed:@"repai"]];
     _descriptionLbl.text = datamodel.des;
@@ -87,5 +87,19 @@
     _oldPriceLbl.attributedText = stringLbl;
     
 }
+
+- (void)fillCellWithHaoHuoModel:(HaoHuolist *)datamodel{
+    
+    [_goodsImageV sd_setImageWithURL:[NSURL URLWithString:datamodel.pic_url] placeholderImage:[UIImage imageNamed:@"repai"]];
+    _descriptionLbl.text = datamodel.des;
+    _nowPriceLbl.text = datamodel.now_price.stringValue;
+    NSMutableAttributedString *stringLbl = [[NSMutableAttributedString alloc] initWithString:datamodel.origin_price.stringValue];
+    NSInteger len = stringLbl.length;
+    
+    [stringLbl addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, len)];
+    _oldPriceLbl.attributedText = stringLbl;
+    
+}
+
 
 @end
