@@ -13,7 +13,7 @@
 #import "CommodityCollectionModel.h"
 
 static NSString *collectionID = @"MyCollectionItem";
-@interface MCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface MCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *listArray;
 
@@ -24,6 +24,8 @@ static NSString *collectionID = @"MyCollectionItem";
 @property (nonatomic, assign) NSString *resuableViewClassName;
 
 @property (nonatomic, strong) CommodityHeadView *commodityHeader;
+
+@property (nonatomic, strong) UIButton *backToTopBtn;
 
 @end
 
@@ -41,6 +43,14 @@ static NSString *collectionID = @"MyCollectionItem";
         self.dataSource = self;
 //        [self setBounces:NO];
         [self registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:collectionID];
+        
+        _backToTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backToTopBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 47, self.height - 73, 47, 47);
+        _backToTopBtn.hidden = YES;
+        [_backToTopBtn addTarget:self action:@selector(backToTop) forControlEvents:UIControlEventTouchUpInside];
+        [_backToTopBtn setImage:[UIImage imageNamed:@"top_btn"] forState:UIControlStateNormal];
+        _backToTopBtn.clipsToBounds = YES;
+        [self addSubview:_backToTopBtn];
     }
     
     return self;
@@ -66,6 +76,17 @@ static NSString *collectionID = @"MyCollectionItem";
     }
     
     return self;
+}
+
+
+
+- (void)backToTop{
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        self.contentOffset = CGPointZero;
+    }];
+    
 }
 
 
@@ -103,6 +124,19 @@ static NSString *collectionID = @"MyCollectionItem";
         }
     }
     return reusableView;
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGPoint pointOffSet = scrollView.contentOffset;
+    _backToTopBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 47, self.height - 73 + pointOffSet.y, 47, 47);
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGPoint pointOffSet = scrollView.contentOffset;
+    if (pointOffSet.y > SCREEN_HEIGHT) {
+        _backToTopBtn.hidden = NO;
+    }
 }
 
 #pragma mark - UICollectionViewDelegate

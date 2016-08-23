@@ -88,12 +88,28 @@
 }
 
 - (void)showSearchView:(UIButton *)sender{
-    
+    TestViewController *vc = [[TestViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showMessageView:(UIButton *)sender{
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+//    LOG_METHOD;
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:animated];
+//    LOG_METHOD;
+
+}
+
+
 
 /*
 #pragma mark - Navigation

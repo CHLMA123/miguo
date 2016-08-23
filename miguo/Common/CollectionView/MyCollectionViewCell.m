@@ -77,7 +77,7 @@
 
 - (void)fillCellWithModel:(list *)datamodel{
     
-    [_goodsImageV sd_setImageWithURL:[NSURL URLWithString:datamodel.pic_url]];
+    [_goodsImageV sd_setImageWithURL:[NSURL URLWithString:datamodel.pic_url] placeholderImage:[UIImage imageNamed:@"repai"]];
     _descriptionLbl.text = datamodel.des;
     _nowPriceLbl.text = datamodel.now_price;
     NSMutableAttributedString *stringLbl = [[NSMutableAttributedString alloc] initWithString:datamodel.origin_price];

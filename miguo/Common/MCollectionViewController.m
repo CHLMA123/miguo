@@ -36,7 +36,9 @@
 
 @property (nonatomic, strong) MCollectionView *firstCollection;
 
-@property (nonatomic, strong) UIButton *backToTopBtn;
+@property (nonatomic, strong) UIButton *backAllBtn;
+
+
 
 @end
 
@@ -94,28 +96,24 @@
     
     [self createScrollCollectionView];
     
-//    _backToTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _backToTopBtn.frame = CGRectMake(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 200, 40, 40);
-//    _backToTopBtn.layer.cornerRadius = 20;
-//    _backToTopBtn.layer.borderColor = [UIColor blackColor].CGColor;
-//    _backToTopBtn.clipsToBounds = YES;
-//    _backToTopBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-//    _backToTopBtn.hidden = YES;
-//    [_backToTopBtn setBackgroundImage:[UIImage imageNamed:@"go_top"] forState:UIControlStateNormal];
-//    [_backToTopBtn setTitle:@"回顶部" forState:UIControlStateNormal];
-//    [_backToTopBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//    [_backToTopBtn setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
-//    [_backToTopBtn addTarget:self action:@selector(backToTopAction) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_backToTopBtn];
+    _backAllBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backAllBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 47, SCREEN_HEIGHT - 73 - 47 - 47 - 10, 47, 47);
+    [_backAllBtn addTarget:self action:@selector(backToTopAction) forControlEvents:UIControlEventTouchUpInside];
+    [_backAllBtn setImage:[UIImage imageNamed:@"all_btn"] forState:UIControlStateNormal];
+    _backAllBtn.clipsToBounds = YES;
+    [self.view addSubview:_backAllBtn];
 
     
 }
 
-//- (void)backToTopAction{
-//    
-//    self.mainTabv.contentOffset = CGPointZero;
-//    _backToTopBtn.hidden = YES;
-//}
+- (void)backToTopAction{
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        _firstCollection.contentOffset = CGPointZero;
+    }];
+    
+}
 
 - (void)createScrollCollectionView{
     
@@ -144,7 +142,6 @@
     }
     MCollectionFlowLayout *leftFlowLayout = [[MCollectionFlowLayout alloc] initHeaderReferenceSize:headerSize];
     _firstCollection =[[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49) collectionViewLayout:leftFlowLayout withHeaderClassName:_resuableViewClassName];
-
     _firstCollection.mCarouselViewUrl = _mCarouselViewUrl;
     
     __weak typeof(self) weakself = self;
