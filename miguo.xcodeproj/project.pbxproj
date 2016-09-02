@@ -414,6 +414,8 @@
 		36712F821D65FC2A00A520AA /* CommodityCarouselViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F811D65FC2A00A520AA /* CommodityCarouselViewModel.m */; };
 		36712F851D65FC3F00A520AA /* CommodityCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36712F841D65FC3F00A520AA /* CommodityCollectionViewModel.m */; };
 		368453631D6A86B400AACAA0 /* MTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 368453621D6A86B400AACAA0 /* MTableViewCell.m */; };
+		36BB80AB1D7877F900C67FD4 /* PushNotification_FlowChart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 36BB80AA1D7877F900C67FD4 /* PushNotification_FlowChart.jpg */; };
+		36BB80AD1D7878A300C67FD4 /* PushNotification_FlowChartDetail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 36BB80AC1D7878A300C67FD4 /* PushNotification_FlowChartDetail.jpg */; };
 		36BC47591D64359300ECE508 /* MCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47581D64359300ECE508 /* MCollectionViewController.m */; };
 		36BC475C1D6439A600ECE508 /* CommodityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC475B1D6439A600ECE508 /* CommodityViewController.m */; };
 		36BC47621D643AA200ECE508 /* GoodstuffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47611D643AA200ECE508 /* GoodstuffViewController.m */; };
@@ -949,6 +951,8 @@
 		36712F841D65FC3F00A520AA /* CommodityCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommodityCollectionViewModel.m; sourceTree = "<group>"; };
 		368453611D6A86B400AACAA0 /* MTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTableViewCell.h; sourceTree = "<group>"; };
 		368453621D6A86B400AACAA0 /* MTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTableViewCell.m; sourceTree = "<group>"; };
+		36BB80AA1D7877F900C67FD4 /* PushNotification_FlowChart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PushNotification_FlowChart.jpg; sourceTree = "<group>"; };
+		36BB80AC1D7878A300C67FD4 /* PushNotification_FlowChartDetail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PushNotification_FlowChartDetail.jpg; sourceTree = "<group>"; };
 		36BC47571D64359300ECE508 /* MCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCollectionViewController.h; sourceTree = "<group>"; };
 		36BC47581D64359300ECE508 /* MCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCollectionViewController.m; sourceTree = "<group>"; };
 		36BC475A1D6439A600ECE508 /* CommodityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommodityViewController.h; sourceTree = "<group>"; };
@@ -1031,6 +1035,8 @@
 		3607099B1D6197DA003B1A79 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				36BB80AC1D7878A300C67FD4 /* PushNotification_FlowChartDetail.jpg */,
+				36BB80AA1D7877F900C67FD4 /* PushNotification_FlowChart.jpg */,
 				360709A41D6197DA003B1A79 /* Main.storyboard */,
 				360709AA1D6197DA003B1A79 /* Assets.xcassets */,
 				360709AC1D6197DA003B1A79 /* LaunchScreen.storyboard */,
@@ -2223,6 +2229,7 @@
 				361851751D620C5100ECAA52 /* colorblower.png in Resources */,
 				361851021D620C5100ECAA52 /* btn_cart.png in Resources */,
 				361851BD1D620C5100ECAA52 /* logo_store@3x.png in Resources */,
+				36BB80AB1D7877F900C67FD4 /* PushNotification_FlowChart.jpg in Resources */,
 				361851DE1D620C5100ECAA52 /* record8.png in Resources */,
 				361851A21D620C5100ECAA52 /* loading_line@3x.png in Resources */,
 				361851FD1D620C5100ECAA52 /* toolbarDown_normal@2x.png in Resources */,
@@ -2335,6 +2342,7 @@
 				3618517A1D620C5100ECAA52 /* dao_shark@2x.png in Resources */,
 				3618517E1D620C5100ECAA52 /* error.png in Resources */,
 				361850EB1D620C5100ECAA52 /* bar_five@3x.png in Resources */,
+				36BB80AD1D7878A300C67FD4 /* PushNotification_FlowChartDetail.jpg in Resources */,
 				361851D11D620C5100ECAA52 /* play.png in Resources */,
 				361851041D620C5100ECAA52 /* btn_cart@2x.png in Resources */,
 				361851F21D620C5100ECAA52 /* shouyekuang@2x.png in Resources */,

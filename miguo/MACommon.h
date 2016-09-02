@@ -20,6 +20,14 @@
 
 #define ScrollHight 31
 
+//不同屏幕尺寸字体适配（320，568是因为效果图为IPHONE5 如果不是则根据实际情况修改）
+#define kScreenWidthRatio  (Main_Screen_Width / 320.0)
+#define kScreenHeightRatio (Main_Screen_Height / 568.0)
+#define AdaptedWidth(x)  ceilf((x) * kScreenWidthRatio)
+#define AdaptedHeight(x) ceilf((x) * kScreenHeightRatio)
+#define AdaptedFontSize(R)     CHINESE_SYSTEM(AdaptedWidth(R))
+
+
 /**
  *  获取屏幕 宽度、高度
  */

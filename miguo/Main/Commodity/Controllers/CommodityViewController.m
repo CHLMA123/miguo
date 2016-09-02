@@ -30,6 +30,38 @@
     [self setUpTitleView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carouselADPush:) name:@"mCarouselADPush" object:nil];
+    
+     [self addObserverToNotificationCenter];
+}
+
+#pragma mark 添加监听
+/*
+ 通知中心可以将一个通知发送给多个监听者，而每个对象的代理却只能有一个。当然代理也有其优点，例如使用代理代码分布结构更加清晰，它不像通知一样随处都可以添加订阅等，实际使用过程中需要根据实际情况而定。
+ */
+-(void)addObserverToNotificationCenter{
+    /*添加应用程序进入后台监听
+     * observer:监听者
+     * selector:监听方法（监听者监听到通知后执行的方法）
+     * name:监听的通知名称(下面的UIApplicationDidEnterBackgroundNotification是一个常量)
+     * object:通知的发送者（如果指定nil则监听任何对象发送的通知）
+     */
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:[UIApplication sharedApplication]];
+    
+    /* 添加应用程序获得焦点的通知监听
+     * name:监听的通知名称
+     * object:通知的发送者（如果指定nil则监听任何对象发送的通知）
+     * queue:操作队列，如果制定非主队线程队列则可以异步执行block
+     * block:监听到通知后执行的操作
+     */
+    NSOperationQueue *operationQueue=[[NSOperationQueue alloc]init];
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication] queue:operationQueue usingBlock:^(NSNotification *note) {
+        NSLog(@"Application become active.");
+    }];
+}
+
+#pragma mark 应用程序启动监听方法
+-(void)applicationEnterBackground{
+    NSLog(@"Application enter background.");
 }
 
 - (void)carouselADPush:(NSNotification *)notify{
