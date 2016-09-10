@@ -10,17 +10,16 @@
 
 @interface MCollectionView : UICollectionView
 
-@property (nonatomic, assign) NSInteger itemCount;
-
 @property (nonatomic, assign) NSString *mCarouselViewUrl;       //Carousel View URL
 
 - (instancetype)initWithFrame:(CGRect)frame
          collectionViewLayout:(UICollectionViewLayout *)viewlayout
-          withHeaderClassName:(NSString *)headerclassname;
+          withHeaderClassName:(NSString *)headerclassname;// 有headerSection的初始化方法
 
-- (void)commitCarouselImageDataArray:(NSArray *)imagearray;
+- (void)commitCarouselImageDataArray:(NSArray *)imagearray;// 轮播UI
 
+//Commodity 数据处理
 - (void)commitListContentDataArray:(NSArray *)listarray withButtonDataArray:(NSArray *)buttonarray;
-
+//Goodstuff 数据处理
 - (void)commitHeaderImageDataArray:(NSArray *)imagearray ListContentDataArray:(NSArray *)listarray;
 @end

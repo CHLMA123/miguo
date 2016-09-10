@@ -93,6 +93,9 @@
     [_goodsImageV sd_setImageWithURL:[NSURL URLWithString:datamodel.pic_url] placeholderImage:[UIImage imageNamed:@"repai"]];
     _descriptionLbl.text = datamodel.des;
     _nowPriceLbl.text = datamodel.now_price.stringValue;
+    if (datamodel.origin_price == nil) {
+        return;
+    }
     NSMutableAttributedString *stringLbl = [[NSMutableAttributedString alloc] initWithString:datamodel.origin_price.stringValue];
     NSInteger len = stringLbl.length;
     
@@ -101,5 +104,20 @@
     
 }
 
+- (void)fillCellWithOtherHaoHuoModel:(OtherHaoHuolist *)datamodel{
+    
+    [_goodsImageV sd_setImageWithURL:[NSURL URLWithString:datamodel.pic_url] placeholderImage:[UIImage imageNamed:@"repai"]];
+    _descriptionLbl.text = datamodel.title;
+    _nowPriceLbl.text = datamodel.now_price.stringValue;
+    NSMutableAttributedString *stringLbl = [[NSMutableAttributedString alloc] initWithString:datamodel.origin_price.stringValue];
+    NSInteger len = stringLbl.length;
+    
+    [stringLbl addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, len)];
+    _oldPriceLbl.attributedText = stringLbl;
+}
+
+- (void)fillCellWithPlaceholderImage{
+    _goodsImageV.image = [UIImage imageNamed:@"repai"];
+}
 
 @end

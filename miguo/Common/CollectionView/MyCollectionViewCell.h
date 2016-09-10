@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "CommodityCollectionModel.h"
 #import "HaoHuoModel.h"
+#import "OtherHaoHuoModel.h"
 
 @interface MyCollectionViewCell : UICollectionViewCell
 
+- (void)fillCellWithPlaceholderImage;
+
 - (void)fillCellWithModel:(collectlist *)datamodel;
 
-- (void)fillCellWithHaoHuoModel:(HaoHuolist *)datamodel;
+//Goodstuff 数据处理
+- (void)fillCellWithHaoHuoModel:(HaoHuolist *)datamodel;//首页
+
+- (void)fillCellWithOtherHaoHuoModel:(OtherHaoHuolist *)datamodel;//other
 
 @end

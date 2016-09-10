@@ -29,21 +29,22 @@
 
 @property (nonatomic, strong) NSMutableArray *mCollectionViewArray;
 
-@property (nonatomic, strong) MCollectionView *mLeftCollection;
-@property (nonatomic, strong) MCollectionView *mMiddCollection;
-@property (nonatomic, strong) MCollectionView *mRightCollection;
+//@property (nonatomic, strong) MCollectionView *mLeftCollection;
+//@property (nonatomic, strong) MCollectionView *mMiddCollection;
+//@property (nonatomic, strong) MCollectionView *mRightCollection;
 
-@property (nonatomic, strong) NSArray *mListArray;
-@property (nonatomic, strong) NSArray *mButtonArray;
-@property (nonatomic, strong) NSArray *mScrollDataArray;
+//@property (nonatomic, strong) NSArray *mListArray;
+//@property (nonatomic, strong) NSArray *mButtonArray;
+//@property (nonatomic, strong) NSArray *mScrollDataArray;
 
-@property (nonatomic, strong) MCollectionView *firstCollection;
+//@property (nonatomic, strong) MCollectionView *firstCollection;
 
 @property (nonatomic, strong) UIButton *backAllBtn;
 
-@property (nonatomic, strong) NSArray *mGoodstuffListArray;
-@property (nonatomic, strong) NSArray *mGoodstuffHeadArray;
+//@property (nonatomic, strong) NSArray *mGoodstuffListArray;
+//@property (nonatomic, strong) NSArray *mGoodstuffHeadArray;
 
+@property (nonatomic, strong) NSMutableArray *curDataArray;//当前tableview的数据源
 
 @end
 
@@ -58,7 +59,12 @@
         
         [self setUpHeadTitleScrollView];
     }
-    [self setUpData];
+    
+    self.currentIndex = 0;
+    _curDataArray = [NSMutableArray array];
+    [self setupDataWithCurrentIndex:_currentIndex];
+    // 添加一个监听 , 监听对象的currentIndex属性的改变, 只要age属性改变就通知self
+    [self addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
     [self setUpViews];
 }
@@ -68,36 +74,59 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setUpData{
+#pragma mark - NSKeyValueObserving
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
     
-    if (_mCarouselViewUrl.length > 0) {//首页是否有轮播图
+    if ([keyPath isEqualToString:@"currentIndex"]) {
         
-        _mScrollDataArray = [NSArray array];
-        [self getCarouselDataWithNetUrl:_mCarouselViewUrl];
+        // 对比change字典中new与old，可判断监听属性是变大还是变小.
+        int new = [change[NSKeyValueChangeNewKey] intValue]; // 取key为new对应的值
+        int old = [change[NSKeyValueChangeOldKey] intValue]; // 取key为old对应的值
+        
+        if (new != old) {
+            [self.curDataArray removeAllObjects];
+            [self setupDataWithCurrentIndex:self.currentIndex];
+        }
+        
     }
-    if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
+}
+
+#pragma mark - setupData
+- (void)setupDataWithCurrentIndex:(NSInteger)index{
+    NSLog(@"页面切换, 开始获取网络数据...");
+    if (index == 0) {
         
-        _mListArray = [NSArray array];
-        _mButtonArray = [NSArray array];
-        [self getCommodityDataWithNetUrl:_mMainContentUrl];
-        
-    }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
-        
-        _mGoodstuffHeadArray = [NSArray array];
-        _mGoodstuffListArray = [NSArray array];
-        [self getGoodstuffDataWithNetUrl:_mMainContentUrl];
+        if (_mCarouselViewUrl.length > 0) {//首页是否有轮播图
+            
+            [self getCarouselDataWithNetUrl:_mCarouselViewUrl];
+        }
+        if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
+            
+            [self getCommodityDataWithNetUrl:self.contentUrlArray[0]];
+            
+        }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
+            
+            [self getGoodstuffDataWithNetUrl:self.contentUrlArray[0]];
+        }
+    }else{
+    
+        [self getOtherStuffDataWithNetUrl:self.contentUrlArray[index]];
     }
+    
 
 }
 
+#pragma mark - setUpViews
 - (void)setUpHeadTitleScrollView{
     
-    _headTitleScrollView = [[HeadTitleScrollView alloc] initWithSmallScroll:_titleArrar];
+    _headTitleScrollView = [[HeadTitleScrollView alloc] initWithSmallScroll:_titleArrar titleNorColor:RGB_White titleSelColor:RGB_White];
     _headTitleScrollView.bounces = NO;
+    _headTitleScrollView.backgroundColor = RGB_Black;
     
     __weak MCollectionViewController *WeakSelf = self;
     void(^changeValue)(NSInteger)=^(NSInteger indexs){
-        _currentIndex=indexs;
+        self.currentIndex=indexs;
         NSLog(@"用户点击了 %ld", (long)_currentIndex);
         [WeakSelf changeCollectionViewAndLoadData];
     };
@@ -130,15 +159,14 @@
     [_backAllBtn setImage:[UIImage imageNamed:@"all_btn"] forState:UIControlStateNormal];
     _backAllBtn.clipsToBounds = YES;
     [self.view addSubview:_backAllBtn];
-
-    
 }
 
 - (void)backToTopAction{
     
+    MCollectionView *collectionV = _mCollectionViewArray[_currentIndex];
     [UIView animateWithDuration:0.25 animations:^{
         
-        _firstCollection.contentOffset = CGPointZero;
+        collectionV.contentOffset = CGPointZero;
     }];
     
 }
@@ -166,37 +194,40 @@
         headerSize = CGSizeMake(SCREEN_WIDTH, 325);
     }
     MCollectionFlowLayout *leftFlowLayout = [[MCollectionFlowLayout alloc] initHeaderReferenceSize:headerSize];
-    _firstCollection =[[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49) collectionViewLayout:leftFlowLayout withHeaderClassName:_resuableViewClassName];
+    
+    MCollectionView *leftCollection =[[MCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49) collectionViewLayout:leftFlowLayout withHeaderClassName:_resuableViewClassName];
+    
     if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
-        _firstCollection.mCarouselViewUrl = _mCarouselViewUrl;
+        leftCollection.mCarouselViewUrl = _mCarouselViewUrl;
     }
     __weak typeof(self) weakself = self;
     
-    _firstCollection.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    leftCollection.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         __strong typeof(weakself) self = weakself;
         [self reloadMoreCommodityListData];
         
     }];
-    [_contentScrollView addSubview:_firstCollection];
-    [_mCollectionViewArray addObject:_firstCollection];
+    [_contentScrollView addSubview:leftCollection];
+    [_mCollectionViewArray addObject:leftCollection];
     
 }
 
 - (void)reloadMoreCommodityListData{
     NSLog(@"reloadMoreCommodityListData");
-    [_firstCollection.mj_footer beginRefreshing];
+    MCollectionView *collectionV = _mCollectionViewArray[_currentIndex];
+    [collectionV.mj_footer beginRefreshing];
     sleep(2);
-    [_firstCollection.mj_footer endRefreshing];
+    [collectionV.mj_footer endRefreshing];
 }
 
 - (void)getCarouselDataWithNetUrl:(NSString *)neturl{
     
     CommodityCarouselViewModel *carouselViewModel = [[CommodityCarouselViewModel alloc] init];
     carouselViewModel.carouselReturnBlock = ^(id returnValue){
-        
-        _mScrollDataArray = returnValue;
-        NSLog(@"--- _mScrollDataArray --- %@", _mScrollDataArray);
-        [_firstCollection commitCarouselImageDataArray:_mScrollDataArray];
+
+        NSLog(@"--- _mScrollDataArray --- %@", (NSArray *)returnValue);
+        MCollectionView *collectionV = _mCollectionViewArray[0];
+        [collectionV commitCarouselImageDataArray:(NSArray *)returnValue];
         
     };
     carouselViewModel.carouselErrorBlock = ^(id errorCode){
@@ -211,15 +242,14 @@
     
     CommodityCollectionViewModel *collectionViewModel = [[CommodityCollectionViewModel alloc] init];
     collectionViewModel.returnBlock = ^(id returnValue1, id returnValue2){
-        _mListArray = returnValue1;
-        _mButtonArray = returnValue2;
-        [_firstCollection commitListContentDataArray:_mListArray withButtonDataArray:_mButtonArray];
-        _firstCollection.itemCount = _mListArray.count;
+
+        MCollectionView *collectionV = _mCollectionViewArray[0];
+        [collectionV commitListContentDataArray:(NSArray *)returnValue1 withButtonDataArray:(NSArray *)returnValue2];
     };
     collectionViewModel.errorBlock = ^(id error){
         NSLog(@"%@", error);
     };
-    [collectionViewModel getCollectionData:_mMainContentUrl withPageNum:0];
+    [collectionViewModel getCollectionData:url withPageNum:0];
 }
 
 - (void)getGoodstuffDataWithNetUrl:(NSString *)url{
@@ -227,16 +257,30 @@
     HaoHuoViewModel *haoHuoViewModel = [[HaoHuoViewModel alloc] init];
     haoHuoViewModel.hhreturnBlock = ^(id value1, id value2){
     
-        _mGoodstuffListArray = value1;
-        _mGoodstuffHeadArray = value2;
-        [_firstCollection commitHeaderImageDataArray:_mGoodstuffHeadArray ListContentDataArray:_mGoodstuffListArray];
+        MCollectionView *collectionV = _mCollectionViewArray[0];
+        [collectionV commitHeaderImageDataArray:(NSArray *)value2 ListContentDataArray:(NSArray *)value1];
+    };
+    haoHuoViewModel.hherrorBlock = ^(id error){
+        NSLog(@"%@", error);
+    };
+    [haoHuoViewModel getHaoHuoData:url];
+    
+}
+
+- (void)getOtherStuffDataWithNetUrl:(NSString *)url{
+    
+    HaoHuoViewModel *haoHuoViewModel = [[HaoHuoViewModel alloc] init];
+    haoHuoViewModel.hhreturnBlock = ^(id value1, id value2){
+
+        //NSLog(@"####### GET到列表数据 ###########");
+        MCollectionView *collectionV = _mCollectionViewArray[_currentIndex];
+        [collectionV commitHeaderImageDataArray:nil ListContentDataArray:(NSArray *)value1];
         
     };
     haoHuoViewModel.hherrorBlock = ^(id error){
         NSLog(@"%@", error);
     };
-    [haoHuoViewModel getHaoHuoData:_mMainContentUrl];
-    
+    [haoHuoViewModel getOtherHaoHuoData:url];
 }
 
 - (void)setUpMoreCollectionView{
@@ -244,18 +288,17 @@
     for (NSInteger i = 1; i < _titleArrar.count; i ++) {
         
         CGFloat mCollectionX = SCREEN_WIDTH * i;
-        MCollectionView *mCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(mCollectionX, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout];
+        MCollectionView *mCollection = [[MCollectionView alloc] initWithFrame:CGRectMake(mCollectionX, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:_otherFlowLayout withHeaderClassName:nil];
         [_contentScrollView addSubview:mCollection];
-
         [_mCollectionViewArray addObject:mCollection];
         
-        if (i % 3 == 0) {
-            mCollection.backgroundColor = [UIColor redColor];
-        }else if (i % 3 == 1){
-            mCollection.backgroundColor = [UIColor yellowColor];
-        }else if (i % 3 == 2){
-            mCollection.backgroundColor = [UIColor greenColor];
-        }
+//        if (i % 3 == 0) {
+//            mCollection.backgroundColor = [UIColor blueColor];
+//        }else if (i % 3 == 1){
+//            mCollection.backgroundColor = [UIColor yellowColor];
+//        }else if (i % 3 == 2){
+//            mCollection.backgroundColor = [UIColor greenColor];
+//        }
 
     }
     
@@ -263,32 +306,32 @@
 
 - (void)changeCollectionViewAndLoadData{
     
-    if (_currentIndex == 0) {
-        
-        //index = 0 情况，只需要刷新左边tableView和中间tableView
-        _mLeftCollection = _mCollectionViewArray[_currentIndex];
-        _mMiddCollection = _mCollectionViewArray[_currentIndex +1];
-        [_mLeftCollection reloadData];
-        [_mMiddCollection reloadData];
-        
-    }else if(_currentIndex == _mCollectionViewArray.count - 1){
-        
-        //index 为最后的下标时，刷新右边tableView 和中间tableView
-        _mRightCollection = _mCollectionViewArray[_currentIndex];
-        _mMiddCollection  = _mCollectionViewArray[_currentIndex - 1];
-        [_mRightCollection reloadData];
-        [_mMiddCollection  reloadData];
-        
-    }else{
-        
-        //除了上边两种情况，三个tableView 都要刷新，为了左右移动时都能够显示数据
-        _mRightCollection = _mCollectionViewArray[_currentIndex+1];
-        _mMiddCollection = _mCollectionViewArray[_currentIndex];
-        _mLeftCollection = _mCollectionViewArray[_currentIndex - 1];
-        [_mRightCollection reloadData];
-        [_mMiddCollection  reloadData];
-        [_mLeftCollection  reloadData];
-    }
+//    if (_currentIndex == 0) {
+//        
+//        //index = 0 情况，只需要刷新左边tableView和中间tableView
+//        _mLeftCollection = _mCollectionViewArray[_currentIndex];
+//        _mMiddCollection = _mCollectionViewArray[_currentIndex +1];
+//        [_mLeftCollection reloadData];
+//        [_mMiddCollection reloadData];
+//        
+//    }else if(_currentIndex == _mCollectionViewArray.count - 1){
+//        
+//        //index 为最后的下标时，刷新右边tableView 和中间tableView
+//        _mRightCollection = _mCollectionViewArray[_currentIndex];
+//        _mMiddCollection  = _mCollectionViewArray[_currentIndex - 1];
+//        [_mRightCollection reloadData];
+//        [_mMiddCollection  reloadData];
+//        
+//    }else{
+//        
+//        //除了上边两种情况，三个tableView 都要刷新，为了左右移动时都能够显示数据
+//        _mRightCollection = _mCollectionViewArray[_currentIndex+1];
+//        _mMiddCollection = _mCollectionViewArray[_currentIndex];
+//        _mLeftCollection = _mCollectionViewArray[_currentIndex - 1];
+//        [_mRightCollection reloadData];
+//        [_mMiddCollection  reloadData];
+//        [_mLeftCollection  reloadData];
+//    }
     _contentScrollView.contentOffset = CGPointMake(SCREEN_WIDTH * _currentIndex, 0);
 }
 
@@ -300,7 +343,8 @@
         return;
     }
     //tableView继承scrollView，如果没有上面的判断下拉tableView的时候默认scrollView.contentOffset.x == 0也就是认为向右滑动
-    _currentIndex = scrollView.contentOffset.x/SCREEN_WIDTH;
+    self.currentIndex = scrollView.contentOffset.x/SCREEN_WIDTH;
+    NSLog(@"### self.currentIndex : %ld", (long)self.currentIndex);
     _headTitleScrollView.index = _currentIndex;
     [self changeCollectionViewAndLoadData];
 }

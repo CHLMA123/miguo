@@ -16,11 +16,42 @@
 
 - (void)viewDidLoad {
     
+    NSMutableArray *urlArray = [NSMutableArray array];
+
     self.titleArrar = @[@"最新上架",@"数码",@"女装",@"文娱",@"家居",@"母婴",@"鞋包",@"运动",@"美妆"];
     
     self.resuableViewClassName = @"GoodstuffHeadView";
     
-    self.mMainContentUrl = @"http://zhekou.repai.com/jkjby/view/rp_b2c_list_v5.php?limit=100&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    NSString *mUrl0 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_list_v5.php?limit=100&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl1 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=1&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl2 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=2&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl3 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=3&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl4 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=4&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl5 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=5&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl6 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=6&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl7 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=7&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    NSString *mUrl8 = @"http://zhekou.repai.com/jkjby/view/rp_b2c_category_list.php?cid=8&&access_token=&appkey=100071&app_oid=2ad000dbe962fff914983edbf273b427&app_id=594792631&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&pay=weixin&senddata=20150922";
+    
+    [urlArray addObject:mUrl0];
+    [urlArray addObject:mUrl1];
+    [urlArray addObject:mUrl2];
+    [urlArray addObject:mUrl3];
+    [urlArray addObject:mUrl4];
+    [urlArray addObject:mUrl5];
+    [urlArray addObject:mUrl6];
+    [urlArray addObject:mUrl7];
+    [urlArray addObject:mUrl8];
+    
+    self.contentUrlArray = urlArray;
+    
     /*
      {
      "rp_type": "103",

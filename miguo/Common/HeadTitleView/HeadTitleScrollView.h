@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) void (^changeIndexValue)(NSInteger);
 
-- (instancetype)initWithSmallScroll:(NSArray *)titleArray;
+- (instancetype)initWithSmallScroll:(NSArray *)titleArray titleNorColor:(UIColor *)norColor titleSelColor:(UIColor *)selColor;
 
 - (CGFloat)getStringWidthSize:(NSString *)text andFontOfSize:(CGFloat)sizeFont;
 

@@ -7,7 +7,8 @@
 //
 
 #import "HaoHuoViewModel.h"
-#import "HaoHuoModel.h"
+#import "HaoHuoModel.h" // page0
+#import "OtherHaoHuoModel.h"
 
 @implementation HaoHuoViewModel
 
@@ -27,5 +28,23 @@
         
     }];
 }
+
+- (void)getOtherHaoHuoData:(NSString *)url{
+    
+    [[NetworkManager shareInstance] GET:url Parameters:nil Success:^(id responseObject) {
+        
+        OtherHaoHuoModel *hhModel = [[OtherHaoHuoModel alloc] init];
+        hhModel = [OtherHaoHuoModel mj_objectWithKeyValues:responseObject];
+        NSArray *hhListArray = hhModel.OtherHaoHuolist;
+//        NSArray *hhheadArray = hhModel.market_camp;
+        _hhreturnBlock(hhListArray, nil);
+        
+    } Failure:^(NSError *error) {
+        
+        _hherrorBlock(error);
+        
+    }];
+}
+
 
 @end

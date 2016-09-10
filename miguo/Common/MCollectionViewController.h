@@ -13,8 +13,7 @@
 
 @property (nonatomic, strong) NSArray *titleArrar;              //标题栏Init数据源
 
-@property (nonatomic, assign) NSString *mMainContentUrl;        //Collection View URL
-
+@property (nonatomic, strong) NSArray *contentUrlArray;
 
 //以下两个属性用与初始化MCollectionView的SectionHeader
 @property (nonatomic, assign) NSString *mCarouselViewUrl;       //Carousel View URL

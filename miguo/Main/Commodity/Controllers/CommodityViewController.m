@@ -19,11 +19,16 @@
 
 - (void)viewDidLoad {
     
+    NSMutableArray *urlArray = [NSMutableArray array];
+    
     self.resuableViewClassName = @"CommodityHeadView";
     
     self.mCarouselViewUrl = @"http://cloud.repaiapp.com/yunying/spzt.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo";
-        
-    self.mMainContentUrl = @"http://zhekou.repai.com/shop/discount/api/listnew1.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&page=1";
+    
+    NSString *url0 = @"http://zhekou.repai.com/shop/discount/api/listnew1.php?app_id=594792631&app_oid=2ad000dbe962fff914983edbf273b427&app_version=1.1.1&app_channel=iphoneappstore&shce=miguo&page=1";
+    [urlArray addObject:url0];
+    self.contentUrlArray = urlArray;
+    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.

@@ -20,4 +20,6 @@ typedef void (^HaoHuoErrorCodeBlock) (id errorCode);
 
 - (void)getHaoHuoData:(NSString *)url;
 
+- (void)getOtherHaoHuoData:(NSString *)url;
+
 @end

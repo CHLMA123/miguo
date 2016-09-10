@@ -70,8 +70,9 @@
 
 - (void)setUpHeadTitleScrollView{
     
-    _headTitleScrollView = [[HeadTitleScrollView alloc] initWithSmallScroll:_titleArrar];
+    _headTitleScrollView = [[HeadTitleScrollView alloc] initWithSmallScroll:_titleArrar titleNorColor:RGB_Black titleSelColor:[UIColor redColor]];
     _headTitleScrollView.bounces = NO;
+    _headTitleScrollView.backgroundColor = RGB_White;
     
     __weak MTableViewController *WeakSelf = self;
     void(^changeValue)(NSInteger)=^(NSInteger indexs){
@@ -115,7 +116,7 @@
     specialDataModel.returnBlock = ^(id value){
         
         _curDataArray = [(NSArray *)value mutableCopy];
-        NSLog(@"### 获取到网络数据");
+//        NSLog(@"### 获取到网络数据");
         [_mTableViewArray[index] reloadData];
     };
     specialDataModel.errorBlock = ^(NSError *error){
@@ -126,10 +127,11 @@
 
 - (void)setUpViews{
     
+    
     _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _contentScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
     if (_titleArrar.count > 1) {
-        _contentScrollView.frame = CGRectMake(0, 95, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _contentScrollView.frame = CGRectMake(0, 95.5, SCREEN_WIDTH, SCREEN_HEIGHT);
         _contentScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * _titleArrar.count, SCREEN_HEIGHT);
     }
     _contentScrollView.showsHorizontalScrollIndicator = NO;
@@ -142,6 +144,10 @@
     
     [self createScrollTableView];
     
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 95, SCREEN_WIDTH, 0.5)];
+    lineView.backgroundColor = RGBCOLOR(178, 178, 178);
+    [self.view addSubview:lineView];
+    
 }
 
 - (void)createScrollTableView{
@@ -153,13 +159,13 @@
         UITableView *mTableView = [[UITableView alloc]initWithFrame:CGRectMake(mTableViewX, 0, SCREEN_WIDTH, FlexHight)];
         mTableView.delegate=self;
         mTableView.dataSource=self;
-        if (i % 3 == 0) {
-            mTableView.backgroundColor = [UIColor redColor];
-        }else if (i % 3 == 1){
-            mTableView.backgroundColor = [UIColor yellowColor];
-        }else if (i % 3 == 2){
-            mTableView.backgroundColor = [UIColor greenColor];
-        }
+//        if (i % 3 == 0) {
+//            mTableView.backgroundColor = [UIColor redColor];
+//        }else if (i % 3 == 1){
+//            mTableView.backgroundColor = [UIColor yellowColor];
+//        }else if (i % 3 == 2){
+//            mTableView.backgroundColor = [UIColor greenColor];
+//        }
         [_contentScrollView addSubview:mTableView];
         [_mTableViewArray addObject:mTableView];
         
@@ -209,7 +215,7 @@
     self.currentIndex = scrollView.contentOffset.x/SCREEN_WIDTH;
     NSLog(@"### _currentIndex : %ld", (long)_currentIndex);
     _headTitleScrollView.index = _currentIndex;
-//    [self changeTableViewAndLoadData];
+    [self changeTableViewAndLoadData];
 }
 
 
@@ -217,13 +223,13 @@
 #pragma mark - tableView
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 220;
+    return SCREEN_WIDTH * 330 /640;// 640 * 330 220
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (_curDataArray.count > 0) {
-        NSLog(@"### _curDataArray.count : %lu", (unsigned long)_curDataArray.count);
+//        NSLog(@"### _curDataArray.count : %lu", (unsigned long)_curDataArray.count);
         return _curDataArray.count;
     }else{
     

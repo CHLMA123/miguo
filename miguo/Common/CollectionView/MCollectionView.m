@@ -11,15 +11,12 @@
 #import "CommodityHeadView.h"
 #import "GoodstuffHeadView.h"
 #import "CommodityCollectionModel.h"
+#import "OtherHaoHuoModel.h"
 
 static NSString *collectionID = @"MyCollectionItem";
 @interface MCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *listArray;
-
-@property (nonatomic, strong) NSArray *buttonArray;
-
-@property (nonatomic, strong) NSArray *carouselArray;
 
 @property (nonatomic, assign) NSString *resuableViewClassName;
 
@@ -43,7 +40,6 @@ static NSString *collectionID = @"MyCollectionItem";
         self.showsVerticalScrollIndicator = YES;
         self.delegate = self;
         self.dataSource = self;
-//        [self setBounces:NO];
         [self registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:collectionID];
         
         _backToTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -65,14 +61,19 @@ static NSString *collectionID = @"MyCollectionItem";
     self = [self initWithFrame:frame collectionViewLayout:viewlayout];
     if (self) {
         
-        _resuableViewClassName = headerclassname;
-        
-        if ([headerclassname isEqualToString:@"CommodityHeadView"]) {
+        if (headerclassname !=nil) {
             
-            [self registerClass:[CommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView"];
+            _resuableViewClassName = headerclassname;
             
-        }else if ([headerclassname isEqualToString:@"GoodstuffHeadView"]){
-            [self registerClass:[GoodstuffHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView"];
+            if ([headerclassname isEqualToString:@"CommodityHeadView"]) {
+                
+                [self registerClass:[CommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CommodityHeadView"];
+                
+            }else if ([headerclassname isEqualToString:@"GoodstuffHeadView"]){
+                [self registerClass:[GoodstuffHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView"];
+            }
+        }else{
+            _resuableViewClassName = nil;
         }
 
     }
@@ -96,13 +97,25 @@ static NSString *collectionID = @"MyCollectionItem";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     MyCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionID forIndexPath:indexPath];
-    if (_listArray.count != 0) {
-        if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
-            collectlist *model = [collectlist mj_objectWithKeyValues:_listArray[indexPath.item]];
-            [cell fillCellWithModel:model];
-        }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
-            HaoHuolist *model = [HaoHuolist mj_objectWithKeyValues:_listArray[indexPath.item]];
-            [cell fillCellWithHaoHuoModel:model];
+    if (_resuableViewClassName.length > 0) {
+        //首页
+        if (_listArray.count != 0) {
+            if ([_resuableViewClassName isEqualToString:@"CommodityHeadView"]) {
+                collectlist *model = [collectlist mj_objectWithKeyValues:_listArray[indexPath.item]];
+                [cell fillCellWithModel:model];
+            }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
+                HaoHuolist *model = [HaoHuolist mj_objectWithKeyValues:_listArray[indexPath.item]];
+                [cell fillCellWithHaoHuoModel:model];
+            }
+        }
+    }else{
+        // Other
+        if (_listArray.count != 0) {
+            
+            OtherHaoHuolist *model = [OtherHaoHuolist mj_objectWithKeyValues:_listArray[indexPath.item]];
+            [cell fillCellWithOtherHaoHuoModel:model];
+        }else{
+            [cell fillCellWithPlaceholderImage];
         }
     }
     return cell;
@@ -111,7 +124,13 @@ static NSString *collectionID = @"MyCollectionItem";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _listArray.count;
+    if (_listArray.count == 0) {
+        
+        return 100;
+    }else{
+    
+        return _listArray.count;
+    }
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +145,7 @@ static NSString *collectionID = @"MyCollectionItem";
         }else if ([_resuableViewClassName isEqualToString:@"GoodstuffHeadView"]){
             _goodstuffHeadView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GoodstuffHeadView" forIndexPath:indexPath];
             reusableView = _goodstuffHeadView;
-//            reusableView.backgroundColor = RGB_LightRed;
+            //reusableView.backgroundColor = RGB_LightRed;
         }
     }
     return reusableView;
@@ -154,28 +173,27 @@ static NSString *collectionID = @"MyCollectionItem";
 
 #pragma mark - 1 Commodity 数据处理
 - (void)commitCarouselImageDataArray:(NSArray *)imagearray{
-    
-    _carouselArray = imagearray;
-    [_commodityHeader fillCarouselViewWithArray:_carouselArray];
+
+    [_commodityHeader fillCarouselViewWithArray:imagearray];
     
 }
 
 - (void)commitListContentDataArray:(NSArray *)listarray withButtonDataArray:(NSArray *)buttonarray{
-    
+    _listArray = nil;
+    if (buttonarray) {
+    [_commodityHeader fillButtonViewWithArray:buttonarray];
+    }
     _listArray = listarray;
-    _buttonArray = buttonarray;
-    
-    [_commodityHeader fillButtonViewWithArray:_buttonArray];
     [self reloadData];
 }
 
 #pragma mark - 2 Goodstuff 数据处理
 - (void)commitHeaderImageDataArray:(NSArray *)imagearray ListContentDataArray:(NSArray *)listarray{
-    
-    [_goodstuffHeadView fillHeaderViewWithArray:imagearray];
-    
+    _listArray = nil;
+    if (imagearray) {
+        [_goodstuffHeadView fillHeaderViewWithArray:imagearray];
+    }
     _listArray = listarray;
-    
     [self reloadData];
     
 }

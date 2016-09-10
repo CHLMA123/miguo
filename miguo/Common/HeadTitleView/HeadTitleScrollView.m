@@ -21,13 +21,12 @@
 @end
 
 @implementation HeadTitleScrollView
-- (instancetype)initWithSmallScroll:(NSArray *)titleArray{
+- (instancetype)initWithSmallScroll:(NSArray *)titleArray titleNorColor:(UIColor *)norColor titleSelColor:(UIColor *)selColor{
 
     if (self = [super init]) {
         
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
-//        self.backgroundColor = [UIColor greenColor];
         self.frame = CGRectMake(0, 64, SCREEN_WIDTH, ScrollHight);
         NSMutableArray *tempButton = [NSMutableArray array];
         NSMutableArray *tempButtonW = [NSMutableArray array];
@@ -46,12 +45,12 @@
                 btn.frame = CGRectMake(0, 0, titleW, 30);
             }
 //            btn.backgroundColor = RGB_Random;
-            btn.backgroundColor = RGB_White;
+//            btn.backgroundColor = RGB_White;
             
             [self addSubview:btn];
             [btn setTitle:titleStr forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+            [btn setTitleColor:norColor forState:UIControlStateNormal];
+            [btn setTitleColor:selColor forState:UIControlStateSelected];
             [btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
             [tempButton addObject:btn];
             [tempButtonW addObject:[@(titleW) stringValue]];
