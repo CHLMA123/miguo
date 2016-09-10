@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSArray *titleArrar;
 
+@property (nonatomic, strong) NSArray *contentUrlArray;
+
 @end

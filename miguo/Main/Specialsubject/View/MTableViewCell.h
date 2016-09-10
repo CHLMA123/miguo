@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "specialModel.h"
 
 @interface MTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UIImageView *cellImageV;
+
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+- (void)fillCellContentWithModel:(tableData *)model;
 
 @end

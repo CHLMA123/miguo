@@ -33,7 +33,7 @@
     
     if ([[UIApplication sharedApplication]currentUserNotificationSettings].types != UIUserNotificationTypeNone) {
         
-        [self addLocalNotification];
+//        [self addLocalNotification];
         
     }else{
     

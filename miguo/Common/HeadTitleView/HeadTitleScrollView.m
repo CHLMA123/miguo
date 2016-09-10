@@ -27,7 +27,7 @@
         
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
-        self.backgroundColor = [UIColor greenColor];
+//        self.backgroundColor = [UIColor greenColor];
         self.frame = CGRectMake(0, 64, SCREEN_WIDTH, ScrollHight);
         NSMutableArray *tempButton = [NSMutableArray array];
         NSMutableArray *tempButtonW = [NSMutableArray array];
@@ -45,7 +45,8 @@
             }else{
                 btn.frame = CGRectMake(0, 0, titleW, 30);
             }
-            btn.backgroundColor = RGB_Random;
+//            btn.backgroundColor = RGB_Random;
+            btn.backgroundColor = RGB_White;
             
             [self addSubview:btn];
             [btn setTitle:titleStr forState:UIControlStateNormal];
@@ -120,9 +121,9 @@
         frame.origin.x = CGRectGetMaxX([self viewWithTag:100 +index - 1].frame);
     }
     frame.size.width = [_titleWidthArr[index] floatValue];
-    [UIView animateWithDuration:0.01 animations:^{
+//    [UIView animateWithDuration:0.01 animations:^{
         _slideLineView.frame = frame;
-    }];
+//    }];
     
 }
 

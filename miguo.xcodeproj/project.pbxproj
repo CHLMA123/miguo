@@ -427,6 +427,10 @@
 		36BC477B1D645D9F00ECE508 /* MCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47701D645D9F00ECE508 /* MCollectionView.m */; };
 		36BC477C1D645D9F00ECE508 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47721D645D9F00ECE508 /* MyCollectionViewCell.m */; };
 		36BC477D1D645D9F00ECE508 /* HeadTitleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC47751D645D9F00ECE508 /* HeadTitleScrollView.m */; };
+		36C5E3611D83A3E9007EDC05 /* specialViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E3601D83A3E9007EDC05 /* specialViewModel.m */; };
+		36C5E3641D83A551007EDC05 /* specialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E3631D83A551007EDC05 /* specialModel.m */; };
+		36C5E3681D83DBAA007EDC05 /* KVO.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C5E3671D83DBAA007EDC05 /* KVO.png */; };
+		36C5E36A1D83DBD1007EDC05 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E3691D83DBD1007EDC05 /* README.md */; };
 		36C75A2B1D62ED7800A6D440 /* MTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C75A2A1D62ED7800A6D440 /* MTableViewController.m */; };
 		36C75A481D63158500A6D440 /* SpecialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C75A471D63158500A6D440 /* SpecialViewController.m */; };
 		36E8ED9A1D6C77F50090FF6E /* HaoHuoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E8ED991D6C77F50090FF6E /* HaoHuoViewModel.m */; };
@@ -975,6 +979,12 @@
 		36BC47721D645D9F00ECE508 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		36BC47741D645D9F00ECE508 /* HeadTitleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTitleScrollView.h; sourceTree = "<group>"; };
 		36BC47751D645D9F00ECE508 /* HeadTitleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTitleScrollView.m; sourceTree = "<group>"; };
+		36C5E35F1D83A3E9007EDC05 /* specialViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = specialViewModel.h; sourceTree = "<group>"; };
+		36C5E3601D83A3E9007EDC05 /* specialViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = specialViewModel.m; sourceTree = "<group>"; };
+		36C5E3621D83A551007EDC05 /* specialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = specialModel.h; sourceTree = "<group>"; };
+		36C5E3631D83A551007EDC05 /* specialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = specialModel.m; sourceTree = "<group>"; };
+		36C5E3671D83DBAA007EDC05 /* KVO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KVO.png; sourceTree = "<group>"; };
+		36C5E3691D83DBD1007EDC05 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		36C75A291D62ED7800A6D440 /* MTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTableViewController.h; sourceTree = "<group>"; };
 		36C75A2A1D62ED7800A6D440 /* MTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTableViewController.m; sourceTree = "<group>"; };
 		36C75A461D63158500A6D440 /* SpecialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialViewController.h; sourceTree = "<group>"; };
@@ -1025,6 +1035,8 @@
 				36070CC21D61ABB1003B1A79 /* MAPrefixHeader.pch */,
 				363F8C4D1D6AA1D5007265B7 /* TestViewController.h */,
 				363F8C4E1D6AA1D5007265B7 /* TestViewController.m */,
+				36C5E3691D83DBD1007EDC05 /* README.md */,
+				36C5E3671D83DBAA007EDC05 /* KVO.png */,
 				360709A71D6197DA003B1A79 /* miguo.xcdatamodeld */,
 				36070CC31D61ABB1003B1A79 /* Resource */,
 				3607099B1D6197DA003B1A79 /* Supporting Files */,
@@ -2086,6 +2098,8 @@
 		3684535E1D6A867C00AACAA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				36C5E3621D83A551007EDC05 /* specialModel.h */,
+				36C5E3631D83A551007EDC05 /* specialModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2093,6 +2107,8 @@
 		3684535F1D6A867C00AACAA0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				36C5E35F1D83A3E9007EDC05 /* specialViewModel.h */,
+				36C5E3601D83A3E9007EDC05 /* specialViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2365,6 +2381,7 @@
 				361851D81D620C5100ECAA52 /* record2.png in Resources */,
 				361851911D620C5100ECAA52 /* img.png in Resources */,
 				361850E51D620C5100ECAA52 /* all_btn.png in Resources */,
+				36C5E3681D83DBAA007EDC05 /* KVO.png in Resources */,
 				361851CB1D620C5100ECAA52 /* muying.png in Resources */,
 				361851881D620C5100ECAA52 /* guanbixiaoxi.png in Resources */,
 				361850F91D620C5100ECAA52 /* Brand Assets-700-568h@2x.png in Resources */,
@@ -2550,6 +2567,7 @@
 				36070F171D61ABB2003B1A79 /* UIImageView+HighlightedWebCache.m in Sources */,
 				363F8C451D6A93BB007265B7 /* MJProperty.m in Sources */,
 				36070F021D61ABB2003B1A79 /* MJRefreshGifHeader.m in Sources */,
+				36C5E3611D83A3E9007EDC05 /* specialViewModel.m in Sources */,
 				36070EE01D61ABB2003B1A79 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				36070EF11D61ABB2003B1A79 /* NSArray+MASAdditions.m in Sources */,
 				36712F711D65F18E00A520AA /* CommodityHeadView.m in Sources */,
@@ -2582,6 +2600,7 @@
 				36712F7C1D65FB7700A520AA /* CommodityCarouselModel.m in Sources */,
 				36712F821D65FC2A00A520AA /* CommodityCarouselViewModel.m in Sources */,
 				36BC47771D645D9F00ECE508 /* BaseTabBarController.m in Sources */,
+				36C5E3641D83A551007EDC05 /* specialModel.m in Sources */,
 				36070F081D61ABB2003B1A79 /* UIScrollView+MJRefresh.m in Sources */,
 				36070EDE1D61ABB2003B1A79 /* AFAutoPurgingImageCache.m in Sources */,
 				36070EDD1D61ABB2003B1A79 /* AFURLSessionManager.m in Sources */,
@@ -2629,6 +2648,7 @@
 				36070E261D61ABB2003B1A79 /* UIScreen+Additions.m in Sources */,
 				36BC47761D645D9F00ECE508 /* BaseNavigationController.m in Sources */,
 				36070F0D1D61ABB2003B1A79 /* SDWebImageCompat.m in Sources */,
+				36C5E36A1D83DBD1007EDC05 /* README.md in Sources */,
 				36070EE71D61ABB2003B1A79 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				36070F211D61B0DA003B1A79 /* NetworkManager.m in Sources */,
 				363F8C4B1D6A93BB007265B7 /* NSObject+MJProperty.m in Sources */,
